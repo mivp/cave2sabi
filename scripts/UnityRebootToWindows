@@ -1,0 +1,11 @@
+#!/bin/bash
+yesno=`kdialog --title "Example YesNo dialog" --yesno "Do you really want to reboot to windows ?"`;
+if [ "$?" = 0 ]; then
+#	kdialog --msgbox "yes"
+	sudo /usr/local/bin/rebootToWindowsAll
+#elif [ "$?" = 1 ]; then
+#	kdialog --msgbox "no"
+#else
+#	kdialog --msgbox "neither no nor yes"
+fi;
+

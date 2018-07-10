@@ -1,0 +1,18 @@
+#!/bin/sh
+
+export OMEGA_HOME=/cave/omegalib/new/omegalib
+export Omegalib_DIR=/cave/omegalib/new/omegalib
+export PATH=${OMEGA_HOME}/bin:${PATH}
+
+cd /cave/omegalib/new/omegalib/bin
+
+./orun -K
+
+#/cave/sabi.js/scripts/GL-highperformance
+
+#/usr/share/Modules/3.2.10/init/bash;
+#module load omegalib/5.3; 
+
+cd /cave/omegalib/apps/flipbook
+
+xterm -e /cave/omegalib/new/omegalib/bin/orun -s flipbook_density.py

@@ -1,0 +1,5 @@
+#!/bin/tcsh
+
+cd /home/toand/git/s2cave_hcp/encube
+
+xterm -e python ./webserver.py config/toand-cave-hcp900-cfg.json

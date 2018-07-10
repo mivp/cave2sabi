@@ -1,0 +1,15 @@
+#!/bin/sh
+
+cd /cave/omegalib/install/omegalib/bin
+
+./orun -K
+
+/cave/sabi.js/scripts/GL-highperformance
+
+sleep 8
+
+mcsend "_drawer.show()"
+mcsend "getSceneManager().enableWandTracking(0, 0)"
+mcsend "getSceneManager().enableWand(0, 0)"
+
+

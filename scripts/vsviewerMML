@@ -1,0 +1,6 @@
+#!/bin/sh
+
+/cave/sabi.js/scripts/GL-highperformance
+
+cd /home/toand/git/projects/vsviewer/build/CAVE2
+xterm -e ./GO_CAVE2_DZ_MML

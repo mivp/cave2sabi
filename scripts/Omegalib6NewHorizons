@@ -1,0 +1,17 @@
+#!/bin/bash
+#. /usr/share/Modules/3.2.10/init/bash
+#module load omegalib/6.3
+#cd /cave/omegalib/install/omegalib6.3/bin
+
+#./orun -K
+
+/cave/sabi.js/scripts/GL-highperformance
+
+
+#cd /cave/omegalib/apps/NewHorizons/
+
+#xterm -geometry -0-0 -e /cave/omegalib/install/omegalib/bin/orun -s /cave/omegalib/apps/NewHorizons07/modelView2.py
+xterm -geometry -0-0 -e orun -s /home/cave/work/modelView2.py
+
+
+

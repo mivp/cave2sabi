@@ -1,0 +1,29 @@
+#!/bin/sh
+
+#OK: This is a very temporary script to demo the histology image
+#uses latest version of omegalib 5.3 with hacked webView component
+
+export OMEGA_HOME=/cave/omegalib/new/omegalib
+export Omegalib_DIR=/cave/omegalib/new/omegalib
+export PATH=${OMEGA_HOME}/bin:${PATH}
+
+cd /cave/omegalib/new/omegalib/bin
+
+./orun -K
+
+/cave/sabi.js/scripts/GL-highperformance
+
+cd /cave/omegalib/apps/gigaview
+
+#Kill all python instances on nodes, then launch server to view histology image
+#tentakel "killall python"
+tentakel "pkill -f gigaview"
+tentakel "pkill -f deepzoom_tiled.py"
+
+tentakel "cd /cave/omegalib/apps/gigaview/openslide-python/examples/deepzoom/; ./deepzoom_tiled.py -l '0.0.0.0' /data/big/jonathan/tardis-cave-data/pyramid-tifs/hs-2015-02-b-full_tif.tif-py.tif"&
+
+xterm -e /cave/omegalib/new/omegalib/bin/orun -s gigaview.py 
+echo killing gigaview
+tentakel "pkill -f gigaview"
+tentakel "pkill -f deepzoom_tiled.py"
+

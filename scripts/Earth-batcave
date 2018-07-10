@@ -1,0 +1,14 @@
+#!/bin/sh
+
+#tentakel scp lyra:/scratch/googleearth/myplaces.kml /scratch/googleearth
+sudo googleCave
+
+tentakel scp lyra:/home/evl/evldemo/CAVE2.js/kml/places/myplaces.kml /scratch/googleearth
+cp /home/evl/evldemo/CAVE2.js/kml/results/empty.kmz /home/evl/evldemo/CAVE2.js/kml/absoluteCrimes.kmz
+cp /home/evl/evldemo/CAVE2.js/kml/results/empty.kmz /home/evl/evldemo/CAVE2.js/kml/absoluteTimezone.kmz
+cp /home/evl/evldemo/CAVE2.js/kml/results/empty.kmz /home/evl/evldemo/CAVE2.js/kml/areaAround.kmz
+cp /home/evl/evldemo/CAVE2.js/kml/results/empty.kmz /home/evl/evldemo/CAVE2.js/kml/areaEqual.kmz
+cp /home/evl/evldemo/CAVE2.js/kml/results/empty.kmz /home/evl/evldemo/CAVE2.js/kml/areaLess.kmz
+cp /home/evl/evldemo/CAVE2.js/kml/results/empty.kmz /home/evl/evldemo/CAVE2.js/kml/areaMore.kmz
+cp /home/evl/evldemo/CAVE2.js/kml/results/empty.kmz /home/evl/evldemo/CAVE2.js/kml/areaZero.kmz
+cp /home/evl/evldemo/CAVE2.js/kml/results/empty.kmz /home/evl/evldemo/CAVE2.js/kml/timezone.kmz

@@ -1,0 +1,9 @@
+#!/bin/bash
+source /usr/share/Modules/3.2.10/init/bash
+cd /home/toand/git/pdbcave2/
+pdb=`kdialog --title "Input dialog" --inputbox "Please pick a protein from the protein database http://www.rcsb.org/pdb/explore.do?structureId=1UBQ " "1ubq"`
+vmd -dispdev text < pdb2obj.tcl -args $pdb
+
+cd data
+module load omegalib/13 
+lavaVR.sh

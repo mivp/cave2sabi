@@ -1,0 +1,34 @@
+#!/bin/sh
+
+#tentakel scp lyra:/scratch/googleearth/myplaces.kml /scratch/googleearth
+sudo googleMirrored
+
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/0.kml lyra-09:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/1.kml lyra-10:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/2.kml lyra-11:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/3.kml lyra-12:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/4.kml lyra-13:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/5.kml lyra-14:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/6.kml lyra-15:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/7.kml lyra-16:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/8.kml lyra-17:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/9.kml lyra-18:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/10.kml lyra-19:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/11.kml lyra-20:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/12.kml lyra-21:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/13.kml lyra-22:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/14.kml lyra-23:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/15.kml lyra-24:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/16.kml lyra-25:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/17.kml lyra-26:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/18.kml lyra-27:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/19.kml lyra-28:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/20.kml lyra-29:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/21.kml lyra-30:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/22.kml lyra-31:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/crimesPerHour/23.kml lyra-32:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/absoluteTimezone.kml lyra-33:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/absoluteTimezone.kml lyra-34:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/absoluteTimezone.kml lyra-35:/scratch/googleearth/myplaces.kml
+scp /home/evl/evldemo/CAVE2.js/kml/results/absoluteTimezone.kml lyra-36:/scratch/googleearth/myplaces.kml
+

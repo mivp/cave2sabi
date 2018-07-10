@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "HD-720p-CODEC1"
+
+#killall -9 decklinkcapture jackd
+
+$SAGE_DIRECTORY/bin/decklinkcapture -d 0 -m 15 -i 2 -v

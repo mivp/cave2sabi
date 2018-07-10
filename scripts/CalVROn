@@ -1,0 +1,8 @@
+#!/bin/sh
+
+/cave/sabi.js/scripts/GL-fast
+
+
+cd /cave/calvr/CalVR/bin
+xterm -e ./CalVR
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+n=`ps -ef | grep -c coles.streaming`
+echo $n
+if [ $n -gt 2 ] ;
+then
+  echo "killing coles radio"  
+  pkill -f coles
+else
+  echo "starting coles radio"
+  xterm -e mplayer http://coles.streaming.novaentertainment.com.au/vic &
+fi
+

@@ -1,0 +1,643 @@
+
+/*
+ *
+ * sage-nvidia: queries the nvidia driver to find out the screens and the cards configuration
+ *
+ */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include <X11/Xlib.h>
+#include "NVCtrl.h"
+#include "NVCtrlLib.h"
+#include <NvCtrlAttributes.h>
+
+
+
+/*
+ * Indices into CtrlHandles->targets[] array; stored in
+ * TargetTypeEntry.target_index.
+ */
+
+/*
+ * The CtrlHandles struct contains an array of target types for an X
+ * server.  For each target type, we store the number of those targets
+ * on this X server.  Per target, we store a NvCtrlAttributeHandle, a
+ * bitmask of what display devices are enabled on that target, and a
+ * string description of that target.
+ */
+
+#define X_SCREEN_TARGET  0
+#define GPU_TARGET       1
+#define FRAMELOCK_TARGET 2
+#define VCS_TARGET       3
+#define GVI_TARGET       4
+#define COOLER_TARGET    5
+#define MAX_TARGET_TYPES 6
+
+
+typedef unsigned int uint32;
+
+typedef struct {
+    NvCtrlAttributeHandle *h; /* handle for this target */
+    uint32 d;                 /* display device mask for this target */
+    uint32 c;                 /* Connected display device mask for target */
+    char *name;               /* name for this target */
+} CtrlHandleTarget;
+
+typedef struct {
+    int n;                    /* number of targets */
+    CtrlHandleTarget *t;      /* dynamically allocated array of targets */
+} CtrlHandleTargets;
+
+typedef struct {
+    char *display;            /* string for XOpenDisplay */
+    Display *dpy;             /* X display connection */
+    CtrlHandleTargets targets[MAX_TARGET_TYPES];
+} CtrlHandles;
+
+CtrlHandles *nv_alloc_ctrl_handles(const char *display);
+void nv_free_ctrl_handles(CtrlHandles *h);
+
+/*
+ * TargetTypeEntry - an array of these structures defines the values
+ * associated with each target type.
+ */
+
+typedef struct {
+    char *name;        /* string describing the TargetType */
+    char *parsed_name; /* name used by parser */
+    int target_index;  /* index into the CtrlHandles->targets[] array */
+    int nvctrl;        /* NV-CONTROL target type value (NV_CTRL_TARGET_TYPE) */
+    
+    /* flag set in NVCTRLAttributeValidValuesRec.permissions */
+    unsigned int permission_bit;
+    
+    /* whether this target type is aware of display devices */
+    int uses_display_devices;
+    
+    /*
+     * the minimum NV-CONTROL Protocol version required to use this target
+     * type; note that all future target types should be able to use 1.18,
+     * since that version and later allows NV-CONTROL clients to query the
+     * count of TargetTypes not recognized by the X server
+     */
+
+    int major;
+    int minor;
+
+} TargetTypeEntry;
+
+/*
+ * targetTypeTable[] - this table stores an association of the values
+ * for each attribute target type.
+ */
+
+TargetTypeEntry targetTypeTable[] = {
+
+    { "X Screen",                    /* name */
+      "screen",                      /* parsed_name */
+      X_SCREEN_TARGET,               /* target_index */
+      NV_CTRL_TARGET_TYPE_X_SCREEN,  /* nvctrl */
+      ATTRIBUTE_TYPE_X_SCREEN,       /* permission_bit */
+      NV_TRUE,                       /* uses_display_devices */
+      1, 6 },                        /* required major,minor protocol rev */
+    
+    { "GPU",                         /* name */
+      "gpu",                         /* parsed_name */
+      GPU_TARGET,                    /* target_index */
+      NV_CTRL_TARGET_TYPE_GPU,       /* nvctrl */
+      ATTRIBUTE_TYPE_GPU,            /* permission_bit */
+      NV_TRUE,                       /* uses_display_devices */
+      1, 10 },                       /* required major,minor protocol rev */
+    
+    { "Frame Lock Device",           /* name */
+      "framelock",                   /* parsed_name */
+      FRAMELOCK_TARGET,              /* target_index */
+      NV_CTRL_TARGET_TYPE_FRAMELOCK, /* nvctrl */
+      ATTRIBUTE_TYPE_FRAMELOCK,      /* permission_bit */
+      NV_FALSE,                      /* uses_display_devices */
+      1, 10 },                       /* required major,minor protocol rev */
+
+    { "VCS",                         /* name */
+      "vcs",                         /* parsed_name */
+      VCS_TARGET,                    /* target_index */
+      NV_CTRL_TARGET_TYPE_VCSC,      /* nvctrl */
+      ATTRIBUTE_TYPE_VCSC,           /* permission_bit */
+      NV_FALSE,                      /* uses_display_devices */
+      1, 12 },                       /* required major,minor protocol rev */
+
+    { NULL, NULL, 0, 0, 0 },
+};
+
+
+/*
+ * nv_alloc_ctrl_handles() - allocate a new CtrlHandles structure,
+ * connect to the X server identified by display, and initialize an
+ * NvCtrlAttributeHandle for each possible target (X screens, gpus,
+ * FrameLock devices).
+ */
+
+CtrlHandles *nv_alloc_ctrl_handles(const char *display)
+{
+    ReturnStatus status;
+    CtrlHandles *h, *pQueryHandle = NULL;
+    NvCtrlAttributeHandle *handle;
+    int target, i, j, val, d, c, len;
+    char *tmp;
+
+    /* allocate the CtrlHandles struct */
+    
+    h = (CtrlHandles*)calloc(1, sizeof(CtrlHandles));
+    
+    /* store any given X display name */
+
+    if (display) h->display = strdup(display);
+    else h->display = NULL;
+    
+    /* open the X display connection */
+
+    h->dpy = XOpenDisplay(h->display);
+
+    if (!h->dpy) {
+      fprintf(stderr, "Cannot open display '%s'.", XDisplayName(h->display));
+        return h;
+    }
+    
+    /*
+     * loop over each target type and setup the appropriate
+     * information
+     */
+    
+    for (j = 0; targetTypeTable[j].name; j++) {
+        
+        /* extract the target index from the table */
+
+        target = targetTypeTable[j].target_index;
+        
+        /* 
+         * get the number of targets of this type; if this is an X
+         * screen target, just use Xlib's ScreenCount() (note: to
+         * support Xinerama: we'll want to use
+         * NvCtrlQueryTargetCount() rather than ScreenCount()); for
+         * other target types, use NvCtrlQueryTargetCount().
+         */
+        
+        if (target == X_SCREEN_TARGET) {
+            
+            h->targets[target].n = ScreenCount(h->dpy);
+            
+        } else {
+    
+            /*
+             * note: pQueryHandle should be assigned below by a
+             * previous iteration of this loop; depends on X screen
+             * targets getting handled first
+             */
+            
+            if (pQueryHandle) {
+
+                /*
+                 * check that the NV-CONTROL protocol is new enough to
+                 * recognize this target type
+                 */
+
+                ReturnStatus ret1, ret2;
+                int major, minor;
+
+                ret1 = NvCtrlGetAttribute(pQueryHandle,
+                                          NV_CTRL_ATTR_NV_MAJOR_VERSION,
+                                          &major);
+                ret2 = NvCtrlGetAttribute(pQueryHandle,
+                                          NV_CTRL_ATTR_NV_MINOR_VERSION,
+                                          &minor);
+
+                if ((ret1 == NvCtrlSuccess) && (ret2 == NvCtrlSuccess) &&
+                    ((major > targetTypeTable[j].major) ||
+                     ((major == targetTypeTable[j].major) &&
+                      (minor >= targetTypeTable[j].minor)))) {
+
+                    status = NvCtrlQueryTargetCount
+                                (pQueryHandle, targetTypeTable[j].nvctrl,
+                                 &val);
+                } else {
+                    status = NvCtrlMissingExtension;
+                }
+            } else {
+                status = NvCtrlMissingExtension;
+            }
+            
+            if (status != NvCtrlSuccess) {
+	      fprintf(stderr, "Unable to determine number of NVIDIA "
+                             "%ss on '%s'.",
+                             targetTypeTable[j].name,
+                             XDisplayName(h->display));
+                val = 0;
+            }
+            
+            h->targets[target].n = val;
+        }
+    
+        /* if there are no targets of this type, skip */
+
+        if (h->targets[target].n == 0) continue;
+        
+        /* allocate an array of CtrlHandleTarget's */
+
+        h->targets[target].t = (CtrlHandleTarget*)
+            calloc(h->targets[target].n, sizeof(CtrlHandleTarget));
+        
+        /*
+         * loop over all the targets of this type and setup the
+         * CtrlHandleTarget's
+         */
+
+        for (i = 0; i < h->targets[target].n; i++) {
+        
+            /* allocate the handle */
+            
+            handle = NvCtrlAttributeInit(h->dpy,
+                                         targetTypeTable[j].nvctrl, i,
+                                         NV_CTRL_ATTRIBUTES_ALL_SUBSYSTEMS);
+            
+            h->targets[target].t[i].h = handle;
+            
+            /*
+             * silently fail: this might happen if not all X screens
+             * are NVIDIA X screens
+             */
+            
+            if (!handle) continue;
+            
+            /*
+             * get a name for this target; in the case of
+             * X_SCREEN_TARGET targets, just use the string returned
+             * from NvCtrlGetDisplayName(); for other target types,
+             * append a target specification.
+             */
+            
+            tmp = NvCtrlGetDisplayName(handle);
+            
+            if (target == X_SCREEN_TARGET) {
+                h->targets[target].t[i].name = tmp;
+            } else {
+                len = strlen(tmp) + strlen(targetTypeTable[j].parsed_name) +16;
+                h->targets[target].t[i].name = (char*)malloc(len);
+
+                if (h->targets[target].t[i].name) {
+                    snprintf(h->targets[target].t[i].name, len, "%s[%s:%d]",
+                             tmp, targetTypeTable[j].parsed_name, i);
+                    free(tmp);
+                } else {
+                    h->targets[target].t[i].name = tmp;
+                }
+            }
+
+            /*
+             * get the enabled display device mask; for X screens and
+             * GPUs we query NV-CONTROL; for anything else
+             * (framelock), we just assign this to 0.
+             */
+
+            if (targetTypeTable[j].uses_display_devices) {
+                
+                status = NvCtrlGetAttribute(handle,
+                                            NV_CTRL_ENABLED_DISPLAYS, &d);
+        
+                if (status != NvCtrlSuccess) {
+		  fprintf(stderr, "Error querying enabled displays on "
+                                 "%s %d (%s).", targetTypeTable[j].name, i,
+                                 NvCtrlAttributesStrError(status));
+                    d = 0;
+                }
+                
+                status = NvCtrlGetAttribute(handle,
+                                            NV_CTRL_CONNECTED_DISPLAYS, &c);
+        
+                if (status != NvCtrlSuccess) {
+		  fprintf(stderr, "Error querying connected displays on "
+                                 "%s %d (%s).", targetTypeTable[j].name, i,
+                                 NvCtrlAttributesStrError(status));
+                    c = 0;
+                }
+            } else {
+                d = 0;
+                c = 0;
+            }
+             
+            h->targets[target].t[i].d = d;
+            h->targets[target].t[i].c = c;
+
+            /*
+             * store this handle so that we can use it to query other
+             * target counts later
+             */
+            
+            if (!pQueryHandle) pQueryHandle = (CtrlHandles*) handle;
+        }
+    }
+    
+    return h;
+
+} /* nv_alloc_ctrl_handles() */
+
+
+/*
+ * nv_free_ctrl_handles() - free the CtrlHandles structure allocated
+ * by nv_alloc_ctrl_handles()
+ */
+
+void nv_free_ctrl_handles(CtrlHandles *h)
+{
+    int i, j, target;
+
+    if (!h) return;
+
+    if (h->display) free(h->display);
+
+    if (h->dpy) {
+
+        /*
+         * XXX It is unfortunate that the display connection needs
+         * to be closed before the backends have had a chance to
+         * tear down their state. If future backends need to send
+         * protocol in this case or perform similar tasks, we'll
+         * have to add e.g. NvCtrlAttributeTearDown(), which would
+         * need to be called before XCloseDisplay().
+         */
+        XCloseDisplay(h->dpy);
+        h->dpy = NULL;
+        
+        for (j = 0; targetTypeTable[j].name; j++) {
+            
+            target = targetTypeTable[j].target_index;
+            
+            for (i = 0; i < h->targets[target].n; i++) {
+                
+                NvCtrlAttributeClose(h->targets[target].t[i].h);
+                
+                if (h->targets[target].t[i].name) {
+                    free(h->targets[target].t[i].name);
+                }
+            }
+            
+            if (h->targets[target].t) free(h->targets[target].t);
+        }
+    }
+    
+    free(h);
+    
+} /* nv_free_ctrl_handles() */
+
+
+
+/*
+ * display_device_name() - return the display device name correspoding
+ * to the display device mask.
+ */
+
+char *display_device_name(int mask)
+{
+    switch (mask) {
+    case (1 <<  0): return "CRT-0"; break;
+    case (1 <<  1): return "CRT-1"; break;
+    case (1 <<  2): return "CRT-2"; break;
+    case (1 <<  3): return "CRT-3"; break;
+    case (1 <<  4): return "CRT-4"; break;
+    case (1 <<  5): return "CRT-5"; break;
+    case (1 <<  6): return "CRT-6"; break;
+    case (1 <<  7): return "CRT-7"; break;
+
+    case (1 <<  8): return "TV-0"; break;
+    case (1 <<  9): return "TV-1"; break;
+    case (1 << 10): return "TV-2"; break;
+    case (1 << 11): return "TV-3"; break;
+    case (1 << 12): return "TV-4"; break;
+    case (1 << 13): return "TV-5"; break;
+    case (1 << 14): return "TV-6"; break;
+    case (1 << 15): return "TV-7"; break;
+
+    case (1 << 16): return "DFP-0"; break;
+    case (1 << 17): return "DFP-1"; break;
+    case (1 << 18): return "DFP-2"; break;
+    case (1 << 19): return "DFP-3"; break;
+    case (1 << 20): return "DFP-4"; break;
+    case (1 << 21): return "DFP-5"; break;
+    case (1 << 22): return "DFP-6"; break;
+    case (1 << 23): return "DFP-7"; break;
+    default: return "Unknown";
+    }
+} /* display_device_name() */
+
+
+
+int main(int argc, char *argv[])
+{
+    Display *dpy;
+    Bool ret;
+
+    int major, minor;
+
+    int num_gpus, num_screens, num_gsyncs;
+    int num_vcs;
+    int gpu, screen;
+    int display_devices, mask;
+    int *pData;
+    int len, j;
+    char *str;
+
+    
+    
+    /*
+     * Open a display connection, and make sure the NV-CONTROL X
+     * extension is present on the screen we want to use.
+     */
+    
+    dpy = XOpenDisplay(NULL);
+    if (!dpy) {
+        fprintf(stderr, "NV-CONTROL> Cannot open display '%s'.\n", XDisplayName(NULL));
+        return 1;
+    }
+    
+    /* XXX Maybe check all screens for the NV-CONTROL X extension? */
+
+    screen = DefaultScreen(dpy);
+
+    if (!XNVCTRLIsNvScreen(dpy, screen)) {
+        fprintf(stderr, "NV-CONTROL> The NV-CONTROL X not available on screen "
+                "%d of '%s'.\n", screen, XDisplayName(NULL));
+        return 1;
+    }
+
+    ret = XNVCTRLQueryVersion(dpy, &major, &minor);
+    if (ret != True) {
+        fprintf(stderr, "NV-CONTROL> The NV-CONTROL X extension does not exist on '%s'.\n",
+                XDisplayName(NULL));
+        return 1;
+    }
+    
+    /* Print some information */
+
+    //printf("\n");
+    //printf("Using NV-CONTROL extension %d.%d on %s\n", major, minor, XDisplayName(NULL));
+
+
+    /* Start printing server system information */
+
+    //printf("\n");
+    printf("Server System Information:\n");
+    //printf("\n");
+
+
+    /* Get the number of gpus in the system */
+
+    ret = XNVCTRLQueryTargetCount(dpy, NV_CTRL_TARGET_TYPE_GPU, &num_gpus);
+    if (!ret) {
+        fprintf(stderr, "Failed to query number of gpus\n");
+        return 1;
+    }
+    printf("\tnumber of GPUs: %d\n", num_gpus);
+
+
+    /* Get the number of X Screens in the system */
+
+    ret = XNVCTRLQueryTargetCount(dpy, NV_CTRL_TARGET_TYPE_X_SCREEN,
+                                  &num_screens);
+    if (!ret) {
+        fprintf(stderr, "Failed to query number of xscreens\n");
+        return 1;
+    }
+    printf("\tnumber of X Screens: %d\n", num_screens);
+
+
+    /* display information about all GPUs */
+
+    for (gpu = 0; gpu < num_gpus; gpu++) {
+
+        printf("\n");
+        printf("GPU %d information:\n", gpu);
+
+
+        /* GPU name */
+
+        ret = XNVCTRLQueryTargetStringAttribute(dpy,
+                                                NV_CTRL_TARGET_TYPE_GPU,
+                                                gpu, // target_id
+                                                0, // display_mask
+                                                NV_CTRL_STRING_PRODUCT_NAME,
+                                                &str);
+        if (!ret) {
+            fprintf(stderr, "Failed to query gpu product name\n");
+            return 1;
+        }
+        printf("\tProduct Name                    : %s\n", str);
+
+        
+        /* X Screens driven by this GPU */
+
+        ret = XNVCTRLQueryTargetBinaryData
+            (dpy,
+             NV_CTRL_TARGET_TYPE_GPU,
+             gpu, // target_id
+             0,   // display_mask
+             NV_CTRL_BINARY_DATA_XSCREENS_USING_GPU,
+             (unsigned char **) &pData,
+             &len);
+        if (!ret) {
+            fprintf(stderr, "Failed to query list of X Screens\n");
+            return 1;
+        }
+        printf("\tNumber of X Screens on GPU %d    : %d\n", gpu, pData[0]);
+
+
+        /* List all X Screens on GPU */
+
+        for (j = 1; j <= pData[0]; j++) {
+            screen = pData[j];
+            
+            printf("\n");
+            printf("\tX Screen %d information:\n", screen);
+
+
+            /* Enabled Display Devices on X Screen */
+
+            ret = XNVCTRLQueryTargetAttribute(dpy,
+                                              NV_CTRL_TARGET_TYPE_X_SCREEN,
+                                              screen,   // target_id
+                                              0,        // display_mask
+                                              NV_CTRL_ENABLED_DISPLAYS,
+                                              &display_devices);
+            if (!ret) {
+                fprintf(stderr, "Failed to query enabled displays\n");
+                XFree(pData);
+                return 1;
+            }
+            //printf("      Display Device Mask (Enabled)   : 0x%08x\n", display_devices);
+
+            /* List all display devices on this X Screen */
+
+            for (mask = 1; mask < (1 << 24); mask <<= 1) {
+                if (!(display_devices & mask)) {
+                    continue;
+                }
+
+                ret = XNVCTRLQueryTargetStringAttribute
+                    (dpy,
+                     NV_CTRL_TARGET_TYPE_X_SCREEN,
+                     screen, // target_id
+                     mask, // display_mask
+                     NV_CTRL_STRING_DISPLAY_DEVICE_NAME,
+                     &str);
+                //printf("      Display Device (0x%08x) : %s - '%s'\n", mask, display_device_name(mask), str); 
+
+		int res;
+                ret = XNVCTRLQueryTargetAttribute
+                    (dpy,
+                     NV_CTRL_TARGET_TYPE_X_SCREEN,
+                     screen, // target_id
+                     mask, // display_mask
+                     NV_CTRL_FRONTEND_RESOLUTION,
+                     //NV_CTRL_FLATPANEL_NATIVE_RESOLUTION,
+                     &res);
+		unsigned long wh = res;
+                //printf("      Display Device (0x%08x) : %s - %u '%d x %u'\n", mask, display_device_name(mask), res, res>> 16, wh & 0xFFFF);
+                //printf("      Display Device : %s - %u '%d x %u'\n", display_device_name(mask), res, res>> 16, wh & 0xFFFF);
+
+                printf("\tDisplay Device : %s - '%s' %d x %u'\n", display_device_name(mask), str,
+					res>> 16, wh & 0xFFFF); 
+
+            }
+        }
+        XFree(pData);
+    }
+
+    fprintf(stdout, "\n\n");
+
+    CtrlHandles *h;
+    h = nv_alloc_ctrl_handles(":0.0");
+
+    for (int i = 0; i < h->targets[X_SCREEN_TARGET].n; i++) {
+      NvCtrlAttributeHandle *screen_handle = h->targets[0].t[i].h;
+      if (!screen_handle) continue;
+      char *screen_name = NvCtrlGetDisplayName(screen_handle);
+      fprintf(stdout, "Screen %d: [%s]\n", NvCtrlGetTargetId(screen_handle), screen_name);
+
+      double xres = (((double) NvCtrlGetScreenWidth(screen_handle)) * 25.4) /
+        ((double) NvCtrlGetScreenWidthMM(screen_handle));
+      double yres = (((double) NvCtrlGetScreenHeight(screen_handle)) * 25.4) /
+        ((double) NvCtrlGetScreenHeightMM(screen_handle));
+
+      fprintf(stdout, "\t%dx%d - %d bits - %dx%d dots per inch\n",
+	      NvCtrlGetScreenWidth(screen_handle),
+	      NvCtrlGetScreenHeight(screen_handle),
+	      NvCtrlGetScreenPlanes(screen_handle),
+	      (int) (xres + 0.5),
+	      (int) (yres + 0.5));
+
+    }
+
+    return 0;
+}

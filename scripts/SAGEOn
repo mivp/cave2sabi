@@ -1,0 +1,44 @@
+#!/bin/sh
+
+/cave/sabi.js/scripts/GL-highperformance
+
+
+cd $HOME
+./KILL-sage
+
+#####  X setup #######
+xhost +local:
+xset  dpms force on
+xset -dpms
+######################
+
+##### AUDIO   ########
+#jackd -d alsa -p 256 &
+######################
+
+cd /home/cave/.sageConfig
+unlink dim.conf
+ln -s dim.conf.sage1default dim.conf
+
+cd $SAGE_DIRECTORY/bin
+sleep 1
+
+./fsManager &
+
+sleep 10
+
+python appLauncher/appLauncher.py -v &
+
+sleep 2
+
+python ../dim/dim.pyc -s head1 --shared_host Calit2:67.58.41.5,CAVE2:67.58.62.80 -v &
+
+sleep 2
+
+cd fileServer && python fileServer.py &
+
+sleep 4
+cd $SAGE_DIRECTORY/dim/hwcapture
+python TrackWand.pyc -t track1.cave.monash.edu -s head1 &
+
+#wait

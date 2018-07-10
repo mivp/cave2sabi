@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cd  /cave/sabi.js
+
+
+./STOP
+
+./node_modules/forever/bin/forever cleanlogs
+
+./node_modules/forever/bin/forever start -l cave2-log.log -o cave2-out.log -e cave2-err.log server.js -f cave2.json &
+

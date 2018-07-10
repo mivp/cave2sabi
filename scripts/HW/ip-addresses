@@ -1,0 +1,6 @@
+#!/bin/sh
+
+#ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'
+
+ifconfig | grep -e 'inet addr:' -e MTU -e eth | grep -v -e '127.0.0.1' -e LOOPBACK | awk 'BEGIN{FS = "[: \t]+"} /eth/{printf("%s %s %s:%s:%s:%s:%s:%s\n", $1,$4,$6,$7,$8,$9,$10,$11)}/inet/{printf("\t IP %s\n", $4)}/MTU/{printf("\t MTU %s\n", $7);}'
+

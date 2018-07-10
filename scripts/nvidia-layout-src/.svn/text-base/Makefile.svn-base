@@ -1,0 +1,26 @@
+BUILD_OS := $(shell uname)
+BUILD_ARCH := $(shell uname -m)
+
+
+ifeq ($(BUILD_OS)-$(BUILD_ARCH),Linux-x86_64)
+	X11R6_LIB_DIR = /usr/X11R6/lib64
+else
+	X11R6_LIB_DIR = /usr/X11R6/lib
+endif
+
+LIBXNVCTRL_DIR = libXNVCtrl
+
+CXXFLAGS =  -Wno-write-strings  -I$(LIBXNVCTRL_DIR) -I.
+LDFLAGS =  -L$(LIBXNVCTRL_DIR) -L$(X11R6_LIB_DIR)
+LDLIBS =   -lXNVCtrl -lXext -lX11
+
+
+SAMPLES = sage-nvidia
+
+all: $(SAMPLES)
+
+sage-nvidia: NvCtrlAttributes.o NvCtrlAttributesNvControl.o sage-nvidia.o
+	$(CXX) -o sage-nvidia NvCtrlAttributes.o NvCtrlAttributesNvControl.o sage-nvidia.o $(LDFLAGS) $(LDLIBS)
+
+clean:
+	rm -rf *.o *~ $(SAMPLES)

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd /cave/mplayer_wall/angkor
+
+/cave/mplayer_wall/angkor/GO_CAVE2

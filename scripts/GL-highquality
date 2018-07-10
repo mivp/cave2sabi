@@ -1,0 +1,9 @@
+#!/bin/sh
+
+nvidia-settings --assign=":0.0/SyncToVBlank=1"
+tentakel nvidia-settings --assign=":0.0/SyncToVBlank=1"
+
+nvidia-settings --assign=":0.0/FXAA=0" --assign FSAA=11 --assign FSAAAppControlled=0 --assign FSAAAppEnhanced=0 --assign LogAniso=3 --assign TextureSharpen=1 --assign GPUPowerMizerMode=1 --assign OpenGLImageSettings=0
+
+tentakel nvidia-settings --assign=":0.0/FXAA=0" --assign FSAA=11 --assign FSAAAppControlled=0 --assign FSAAAppEnhanced=0 --assign LogAniso=3 --assign TextureSharpen=1 --assign GPUPowerMizerMode=1 --assign OpenGLImageSettings=0
+

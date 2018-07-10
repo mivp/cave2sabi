@@ -1,0 +1,18 @@
+#!/bin/bash
+. /usr/share/Modules/3.2.10/init/bash
+module load omegalib/13
+#cd /cave/omegalib/install/omegalib6.3/bin
+
+#./orun -K
+
+/cave/sabi.js/scripts/GL-highperformance
+
+
+#cd /cave/omegalib/apps/NewHorizons/
+
+#xterm -geometry -0-0 -e /cave/omegalib/install/omegalib/bin/orun -s /cave/omegalib/apps/NewHorizons07/modelView2.py
+
+xterm -geometry -0-0 -e orun -s /home/cave/work/se.py -x "MonashMenu.SetCamera(getDefaultCamera(),Vector3(1174.40, -164.61, -1828.89),Vector3(1.57, 0, 0))"
+
+
+

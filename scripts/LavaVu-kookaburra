@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /cave/LavaVR/apps/Kookaburra 
+xterm -geometry -0-0 -e LavaVR.sh
+

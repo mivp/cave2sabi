@@ -1,0 +1,13 @@
+#!/bin/bash
+lavaVR.sh -K
+sleep 2
+
+pkill -f orun
+pkill -f LavaVR
+tentakel pkill -f LavaVR
+tentakel pkill -f orun
+
+tentakel pkill --signal 9 -f LavaVR
+tentakel pkill --signal 9 -f orun
+pkill --signal 9 -f LavaVR
+pkill --signal 9 -f orun

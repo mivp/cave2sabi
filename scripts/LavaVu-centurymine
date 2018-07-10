@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /cave/LavaVR/apps/century_mine
+xterm -geometry -0-0 -e  lavaVR.sh
+

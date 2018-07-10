@@ -1,0 +1,7 @@
+#!/bin/sh
+
+/cave/sabi.js/scripts/GL-highperformance
+
+cd /cave/Electro/examples/mars/
+xterm -e ./run_monash_mono
+

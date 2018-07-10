@@ -1,0 +1,41 @@
+#!/bin/sh
+
+#tentakel scp lyra:/scratch/googleearth/myplaces.kml /scratch/googleearth
+
+scp /scratch/googleearth/myplaces.kml lyra-01:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-02:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-03:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-04:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-05:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-06:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-07:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-08:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-09:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-10:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-11:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-12:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-13:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-14:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-15:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-16:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-17:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-18:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-19:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-20:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-21:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-22:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-23:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-24:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-25:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-26:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-27:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-28:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-29:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-30:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-31:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-32:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-33:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-34:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-35:/scratch/googleearth
+scp /scratch/googleearth/myplaces.kml lyra-36:/scratch/googleearth
+

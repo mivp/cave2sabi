@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cd /home/cave/dev/videocave/build
+./STOP_CAVE.sh &
+
+
+# Stop Capture
+#/cave/sabi.js/scripts/HD-STOP &
+#sleep 5
+
+# Stop SAGE
+#/cave/sabi.js/scripts/SAGEOff &
+

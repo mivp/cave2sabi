@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# just checking it's mounted
+
+if [ -d /media/usb ]
+then
+	cd /media/usb
+	if [ -d sage ]
+	then
+		cd sage
+		/home/evl/evldemo/CAVE2.js/scripts/fileSharing.py *
+	fi
+fi
+

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cd /cave/netlogo
+
+./STOP_CAVE2
+
+sleep 2
+
+xterm -e /cave/netlogo/LAUNCH_CAVE2

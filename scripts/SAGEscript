@@ -1,0 +1,35 @@
+#!/bin/sh
+
+MOVE0="move 0 1500 1000
+exit
+"
+
+MOVE1="move 1 3000 1000
+exit
+"
+
+MOVE2="move 2 4500 1000
+exit
+"
+
+MOVE3="move 3 6000 1000
+exit
+"
+
+MOVE4="move 4 7500 1000
+exit
+"
+
+cd /cave/sage/fileServer/fileLibrary/video
+
+mplayer -framedrop -sws 4 -loop 0 -quiet -vo sage:stereo 7045-pcb-pb-wtf-stereo.avi&
+sleep 2; echo $MOVE0 | fsConsole; wait
+mplayer -framedrop -sws 4 -loop 0 -quiet -vo sage:stereo 5861-kidney-stereo.avi&
+sleep 2; echo $MOVE1 | fsConsole; wait
+mplayer -framedrop -sws 4 -loop 0 -quiet -vo sage:stereo 6967C-elbow-stereo.avi&
+sleep 2; echo $MOVE2 | fsConsole; wait
+mplayer -framedrop -sws 4 -loop 0 -quiet -vo sage:stereo 7028-mouse-3D.avi&
+sleep 2; echo $MOVE3 | fsConsole; wait
+mplayer -framedrop -sws 4 -loop 0 -quiet -vo sage:stereo 5811-m3-stereo.avi &
+sleep 2; echo $MOVE4 | fsConsole; wait
+

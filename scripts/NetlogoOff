@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd /cave/netlogo
+
+./STOP_CAVE2

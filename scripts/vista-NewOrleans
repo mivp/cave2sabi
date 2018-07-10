@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+cd /home/handreas/dev/UVDV/UVDV-2.0.svn_rev/LINUX.X86_64/
+
+xterm -e "./GO_Cluster.sh configfiles/scene_data_neworleans.ini"
+
+

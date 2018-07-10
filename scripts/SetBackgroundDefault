@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# replace link to imagelist file
+origFile=`cat /cave/share/saver/bgfile.txt`
+newFile=`cat /cave/share/saver/bg_default.txt`
+
+if [ "$origFile" == "$newFile" ]; then
+
+exit
+
+fi
+
+unlink /cave/share/saver/bgfile.txt
+ln -s /cave/share/saver/bg_default.txt /cave/share/saver/bgfile.txt
+
+# change to restart saver2 on nodes
+sudo /usr/local/bin/killsaver

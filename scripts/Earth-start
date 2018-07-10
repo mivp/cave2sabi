@@ -1,0 +1,6 @@
+#!/bin/sh
+
+tentakel forever -c /usr/bin/google-earth start /dev/null &
+
+/usr/bin/google-earth &
+

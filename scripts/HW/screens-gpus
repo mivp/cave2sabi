@@ -1,0 +1,4 @@
+#!/bin/sh
+
+nvidia-settings -q screens -q gpus
+

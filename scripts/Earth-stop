@@ -1,0 +1,9 @@
+#!/bin/sh
+
+tentakel forever stopall
+tentakel killall -9 node
+tentakel killall -9 /opt/google/earth/free/googleearth-bin
+
+killall -9 /opt/google/earth/free/googleearth-bin
+
+

@@ -1,0 +1,4 @@
+#!/bin/bash
+python /cave/sabi.js/scripts/planarOn
+ssh n01 'python /cave/sabi.js/scripts/planarOn'
+

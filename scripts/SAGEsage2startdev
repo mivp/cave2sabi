@@ -1,0 +1,8 @@
+#!/bin/sh
+. /usr/share/Modules/3.2.10/init/sh
+#export PATH=/cave/dev/node/node-v4.2.2-linux-x64/bin:${PATH}
+module load nodejs/4.4
+cd /cave/sage/sage2-node-4.4/
+xterm -e "node server.js "&
+sleep 10
+./GO-cave2

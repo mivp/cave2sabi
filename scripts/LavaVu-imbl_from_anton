@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /cave/LavaVR/apps/imbl_from_anton 
+xterm -geometry -0-0 -e lavaVR.sh
+

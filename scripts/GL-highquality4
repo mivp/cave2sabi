@@ -1,0 +1,15 @@
+#!/bin/sh
+
+nvidia-settings --assign=":0.0/SyncToVBlank=0"
+tentakel nvidia-settings --assign=":0.0/SyncToVBlank=0"
+
+nvidia-settings -n --assign FXAA=0 --assign FSAA=0 --assign FSAAAppControlled=0 --assign FSAAAppEnhanced=0 --assign LogAniso=0 --assign TextureSharpen=1 --assign GPUPowerMizerMode=1 --assign OpenGLImageSettings=3
+
+tentakel nvidia-settings -n --assign=":0.0/FXAA=0" --assign=":0.0/FSAA=0" --assign=":0.0/FSAAAppControlled=0" --assign=":0.0/FSAAAppEnhanced=0" --assign=":0.0/LogAniso=3" --assign=":0.0/TextureSharpen=1" --assign=":0.0/GPUPowerMizerMode=1" --assign=":0.0/OpenGLImageSettings=3"
+
+tentakel nvidia-settings -n --assign=":0.1/FXAA=0" --assign=":0.1/FSAA=0" --assign=":0.1/FSAAAppControlled=0" --assign=":0.1/FSAAAppEnhanced=0" --assign=":0.1/LogAniso=3" --assign=":0.1/TextureSharpen=1" --assign=":0.1/GPUPowerMizerMode=1" --assign=":0.1/OpenGLImageSettings=3"
+
+tentakel nvidia-settings -n --assign=":0.2/FXAA=0" --assign=":0.2/FSAA=0" --assign=":0.2/FSAAAppControlled=0" --assign=":0.2/FSAAAppEnhanced=0" --assign=":0.2/LogAniso=3" --assign=":0.2/TextureSharpen=1" --assign=":0.2/GPUPowerMizerMode=1" --assign=":0.2/OpenGLImageSettings=3"
+
+tentakel nvidia-settings -n --assign=":0.3/FXAA=0" --assign=":0.3/FSAA=0" --assign=":0.3/FSAAAppControlled=0" --assign=":0.3/FSAAAppEnhanced=0" --assign=":0.3/LogAniso=3" --assign=":0.3/TextureSharpen=1" --assign=":0.3/GPUPowerMizerMode=1" --assign=":0.3/OpenGLImageSettings=3"
+

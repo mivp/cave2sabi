@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cd /cave/omegalib/install/omegalib/bin
+
+./orun -K
+
+#/cave/sabi.js/scripts/GL-highperformance
+
+
+#cd /cave/omegalib/apps/flipbook
+
+#xterm -e /cave/omegalib/install/omegalib/bin/orun -s flipbook_jon2.py
+xterm -e orun -s /data/big/handreas/woodside/PUB_final_data/flipbook_woodside_sc04.py

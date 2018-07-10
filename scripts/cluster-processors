@@ -1,0 +1,4 @@
+#!/bin/sh
+
+tentakel $PWD/scripts/HW/processors
+

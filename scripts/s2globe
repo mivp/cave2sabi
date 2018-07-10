@@ -1,0 +1,5 @@
+#!/usr/bin/tcsh
+source /usr/share/Modules/3.2.10/init/tcsh
+module unload s2plot
+cd /home/dbarnes/git/s2cave/s2globe
+source cave-ah.cmd.20

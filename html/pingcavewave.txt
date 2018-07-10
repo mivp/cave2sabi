@@ -1,0 +1,22 @@
+Tue May 12 13:45:31 AEST 2015
+head1.cave.monash.edu UP
+n01.cave.monash.edu UP
+n02.cave.monash.edu UP
+n03.cave.monash.edu UP
+n04.cave.monash.edu UP
+n05.cave.monash.edu UP
+n06.cave.monash.edu UP
+n07.cave.monash.edu UP
+n08.cave.monash.edu UP
+n09.cave.monash.edu UP
+n10.cave.monash.edu UP
+n11.cave.monash.edu UP
+n12.cave.monash.edu UP
+n13.cave.monash.edu UP
+n14.cave.monash.edu UP
+n15.cave.monash.edu UP
+n16.cave.monash.edu UP
+n17.cave.monash.edu UP
+n18.cave.monash.edu UP
+n19.cave.monash.edu UP
+n20.cave.monash.edu UP

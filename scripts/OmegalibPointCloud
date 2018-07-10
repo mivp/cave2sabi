@@ -1,0 +1,21 @@
+#!/bin/sh
+
+#OK: uses latest version of omegalib 5.3,
+#When modules installed fix this to load correct module
+
+export OMEGA_HOME=/cave/omegalib/install/omegalib
+#export OMEGA_HOME=/cave/omegalib/new/omegalib
+#export OMEGA_HOME=/cave/dev/omegalib/omegalib-5.3/core/build
+export Omegalib_DIR=${OMEGA_HOME}
+export PATH=${OMEGA_HOME}/bin:${PATH}
+
+cd ${OMEGA_HOME}/bin
+
+./orun -K
+
+/cave/sabi.js/scripts/GL-highperformance
+
+cd /data/big/arup/PCWorks2/
+
+xterm -e ${OMEGA_HOME}/bin/orun -s MyPoint.py
+

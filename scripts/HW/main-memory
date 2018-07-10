@@ -1,0 +1,4 @@
+#!/bin/sh
+
+hwinfo --memory | grep Size
+

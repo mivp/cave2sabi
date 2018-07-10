@@ -1,0 +1,12 @@
+#!/bin/sh
+
+cd /cave/omegalib/install/omegalib/bin
+
+./orun -K
+
+/cave/sabi.js/scripts/GL-highperformance
+
+
+
+xterm -e ./orun -s mars/mars.py
+

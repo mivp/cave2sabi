@@ -1,0 +1,11 @@
+#!/bin/sh
+
+echo "HD-1080p-SDI"
+
+ssh lyra-36 killall -9 decklinkcapture jackd
+
+# 9 : 59.94i
+# 10: 60i
+ssh lyra-36 $SAGE_DIRECTORY/bin/decklinkcapture -d 0 -m 9 -i 1 -v -y
+
+

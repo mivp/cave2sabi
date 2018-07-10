@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "HD-STOP-Scaler1-Stereo"
+
+killall -9 decklinkcapture3d

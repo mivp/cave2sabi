@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# ./cave2twaka  trackerIP
+
+cd /cave/Electro/cave2twaka
+
+killall -9 cave2twaka
+xterm -e "./cave2twaka track1.cave.monash.edu"
+
+

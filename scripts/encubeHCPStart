@@ -1,0 +1,6 @@
+#!/bin/tcsh
+
+/cave/sabi.js/scripts/GL-highperformance
+
+cd /home/toand/git/s2cave_hcp/encube
+python ./encube_m.py config/toand-cave-hcp900-cfg.json 0

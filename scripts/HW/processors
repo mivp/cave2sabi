@@ -1,0 +1,10 @@
+#!/bin/sh
+
+model=`hwinfo --cpu --short | tail -1`
+count=`hwinfo --cpu --short | tail +2|wc -l`
+
+echo "Processor:"
+echo "	" $model
+echo "Count:"
+echo "	" $count
+

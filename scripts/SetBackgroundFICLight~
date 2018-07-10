@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# replace link to imagelist file
+unlink /cave/share/saver/bgfile.txt
+ln -s /cave/share/saver/bg_fic_light.txt /cave/share/saver/bgfile.txt
+
+# change to restart saver2 on nodes
+sudo /usr/local/bin/killsaver

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+/cave/sabi.js/scripts/GL-highperformance
+
+export PATH=/cave/LavaVu/cave:/cave/LavaVu/bin:${PATH}
+
+source /usr/share/Modules/3.2.10/init/bash
+module load omegalib/5.3
+
+xterm -e cd /cave/LavaVu/apps/imbl_from_anton; LavaVR
+

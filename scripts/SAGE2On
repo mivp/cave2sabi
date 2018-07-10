@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export PATH=/cave/dev/node/node-v4.2.2-linux-x64/bin:${PATH}
+cd /cave/sage2
+/cave/sage2/GO-cave2

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+/cave/omegalib/install/omegalib/bin/mcsend 'oexit()'
+
+cd /cave/omegalib/install/omegalib/bin
+
+./orun -K
+
+cd /cave/omegalib/install/omegalib5.3/bin
+
+./orun -K
+
+
+cd /cave/omegalib/install/omegalib6.3/bin
+
+./orun -K
+
+sleep 2
+
+killall -9 orun
+tentakel killall -9 orun
+

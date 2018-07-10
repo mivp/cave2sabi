@@ -1,0 +1,11 @@
+#!/bin/sh
+
+killall -9 /opt/google/earth/free/googleearth-bin
+
+tentakel killall -9 node
+tentakel killall -9 /opt/google/earth/free/googleearth-bin
+
+
+/home/evl/evldemo/CAVE2.js/scripts/SAGEOff &
+
+

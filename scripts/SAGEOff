@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#killall -9  python fsManager sageDisplayManager imageviewer mplayer bplay-noglut VNCViewer render atlantis atlantis-mpi checker pdfviewer image3d images3d
+killall -9  fsManager sageDisplayManager imageviewer mplayer bplay-noglut VNCViewer render atlantis atlantis-mpi checker pdfviewer image3d images3d
+
+pkill -f appLauncher.py 
+pkill -f fileServer.py 
+pkill -f TrackWand.pyc
+
+tentakel killall -9  fsManager sageDisplayManager imageviewer mplayer bplay-noglut VNCViewer render atlantis atlantis-mpi checker pdfviewer image3d images3d
+
+#ssh lyra-36 killall -9 decklinkcapture jackd
+

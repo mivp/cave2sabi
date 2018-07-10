@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /cave/LavaVR/apps/rabbit-lungs/xrw_fullsize
+#xterm -geometry -0-0 -e lavaVR.sh -c /cave/omegalib/install/omegalib5.3/monash/xinerama-k5200.cfg
+xterm -geometry -0-0 -e LavaVR.sh -c /cave/omegalib/omegalib13.1-cxx11/monash/xinerama-k5200.cfg

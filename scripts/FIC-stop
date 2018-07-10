@@ -1,0 +1,8 @@
+#!/bin/sh
+
+killall -9 CalVR
+killall -9 electro-mpi
+orun -K
+tentakel killall -9 CalVR;killall -9 electro-mpi
+killall xterm
+pkill -f coles

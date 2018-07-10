@@ -1,0 +1,3 @@
+#!/bin/sh
+
+hwinfo --netcard | grep -e 'Ethernet controller' -e Model -e SubVendor | awk -F\" '/Model/{printf("\t [%s]\n",$2);}/PCI/{print $0}/SubVendor/{printf("\t [%s]\n", $2);}'

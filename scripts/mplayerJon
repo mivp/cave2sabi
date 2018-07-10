@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd /cave/mplayer_wall/fiftysisters
+
+/cave/mplayer_wall/fiftysisters/GO_CAVE2_2

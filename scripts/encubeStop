@@ -1,0 +1,5 @@
+#!/bin/tcsh
+
+tentakel pkill s2hd
+pkill s2hd
+pkill -f webserver

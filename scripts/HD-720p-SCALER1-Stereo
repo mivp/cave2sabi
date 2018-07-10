@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "HD-720p-Scaler1-Stereo"
+
+killall -9 decklinkcapture3d
+
+xterm -e $SAGE_DIRECTORY/bin/decklinkcapture3d -d 2 -m 15 -i 2 -v -b

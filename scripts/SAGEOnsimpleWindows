@@ -1,0 +1,37 @@
+#!/bin/sh
+
+cd $HOME
+./KILL-sage
+
+#####  X setup #######
+xhost +local:
+xset  dpms force on
+xset -dpms
+######################
+
+##### AUDIO   ########
+#jackd -d alsa -p 256 &
+######################
+
+cd /home/cave/.sageConfig
+unlink dim.conf
+ln -s dim.conf.simpleWindows dim.conf
+
+cd $SAGE_DIRECTORY/bin
+sleep 1
+
+./fsManager &
+
+sleep 10
+
+python appLauncher/appLauncher.py -v &
+
+sleep 2
+
+python ../dim/dim.pyc -s head1 &
+
+sleep 2
+
+cd fileServer && python fileServer.py &
+
+#wait

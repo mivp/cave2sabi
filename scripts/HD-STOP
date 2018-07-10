@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "HD-STOP"
+
+#ssh lyra-36 killall -9 decklinkcapture jackd
+killall -9 decklinkcapture jackd

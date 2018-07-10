@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. /usr/share/Modules/3.2.10/init/bash
+module load omegalib/13-c++11
+/cave/sabi.js/scripts/GL-highperformance
+
+cd /home/toand/git/projects/windmap/omegalib_module_test/CAVE
+xterm -e orun -s windmap.py

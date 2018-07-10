@@ -1,0 +1,5 @@
+#!/bin/sh
+
+nvidia-settings --assign=":0.0/SyncToVBlank=1" --assign FSAA=0 --assign FSAAAppControlled=0 --assign FSAAAppEnhanced=0
+tentakel nvidia-settings --assign=":0.0/SyncToVBlank=1" --assign FSAA=0 --assign FSAAAppControlled=0 --assign FSAAAppEnhanced=0
+

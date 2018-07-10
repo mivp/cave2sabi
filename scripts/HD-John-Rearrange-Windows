@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "HD-John-Start-Capture"
+
+#killall -9 decklinkcapture jackd
+
+cd /home/cave/john_sage
+xterm -e /home/cave/john_sage/03_rearrange_windows 0

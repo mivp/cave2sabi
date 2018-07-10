@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /cave/LavaVR/apps/fluid-vortex
+xterm -geometry -0-0 -e lavaVR.sh
+

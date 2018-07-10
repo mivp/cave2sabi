@@ -1,0 +1,2 @@
+#!/bin/sh
+ssh dev@carbon.cave.monash.edu '~/3DME/sabi.sh'

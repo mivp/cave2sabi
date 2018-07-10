@@ -1,0 +1,6 @@
+#!/bin/sh
+
+tentakel -g lyra8 forever -c /usr/bin/google-earth start /dev/null &
+
+xterm -e /home/evl/evldemo/CAVE2.js/scripts/SAGEleftOn &
+

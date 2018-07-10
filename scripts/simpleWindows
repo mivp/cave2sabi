@@ -1,0 +1,20 @@
+#!/bin/sh
+
+
+cd /home/cave/dev/videocave/build
+./GO_CAVE.sh & 
+
+# Displays On
+#/cave/sabi.js/scripts/PlanarOn &
+
+# SAGE1 on
+#/cave/sabi.js/scripts/SAGEOnsimpleWindows &
+#sleep 23
+
+# Start Capture
+#/cave/sabi.js/scripts/HD-John-Start-Capture &
+#sleep 10
+
+#rearrange capture
+#/cave/sabi.js/scripts/HD-John-Rearrange-Windows &
+

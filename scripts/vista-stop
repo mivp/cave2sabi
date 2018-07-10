@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+cd /home/handreas/dev/UVDV/UVDV-2.0.svn_rev/LINUX.X86_64/
+pkill -f UVDV2
+

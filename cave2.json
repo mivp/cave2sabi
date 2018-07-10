@@ -1,0 +1,669 @@
+{
+    "global": {
+        "security" : "false",
+        "server_port" : "9000"
+    },
+    "main": {
+        "header" : "<h1>CAVE2 Enhanced Experience</h1>",
+        "footer" : "<h4>CAVE2 Enhanced Experience</h4>",
+        "image" : "images/cave2_logo.gif",
+        "image_style" : "width=\"90%\" style=\"max-width:420px;align:center;margin: 0 auto;\"",
+        "pages" : [ "Admin", "MIVP", "SAGE", "Electro", "OmegaLib", "CalVR", "Audio", "ViSTA", "FIC" ]
+    },
+    "actions": {
+        "displays-on":    {  "script": "scripts/PlanarOn" },
+        "displays-off":   {  "script": "scripts/PlanarOff" },
+        "screenshot":   {  "command" : "/cave/share/tool/take_screenshot.sh" },
+        "displays-cave":   {  "script": "scripts/PlanarCave" },
+        "displays-head3":   {  "script": "scripts/PlanarHead3" },
+        "displays-simpleWindows":   {  "script": "scripts/simpleWindows" },
+        "displays-simpleWindows-stop":   {  "script": "scripts/simpleWindows-stop" },
+        "displays-default-background":   {  "script": "scripts/SetBackgroundDefault" },
+        "displays-dark-background":   {  "script": "scripts/SetBackgroundFICDark" },
+	"displays-dark-background-201801":    {   "script": "scripts/SetBackgroundFICDark201801" },
+        "displays-bright-background":   {  "script": "scripts/SetBackgroundFICLight" },
+        "displays-dark-mivp-background":   {  "script": "scripts/SetBackgroundFICMIVPDark" },
+        "displays-bright-mivp-background":   {  "script": "scripts/SetBackgroundFICMIVPLight" },
+        "displays-dark-irt-background":   {  "script": "scripts/SetBackgroundMIVP3DIRT" },
+        "displays-dark-irt-scaled-background":   {  "script": "scripts/SetBackgroundMIVP3DIRTScaled" },
+        "xinerama-on":  {  "script": "scripts/XineramaOn" },
+        "xinerama-off": {  "script": "scripts/XineramaOff" },
+        "reset-x":      {  "command" : "xterm -e sudo /usr/local/bin/ResetX" },
+        "cave-kill":    {  "command" : "sudo /usr/local/bin/CAVEKILL" },
+
+        "cameras-on":   {  "script": "scripts\\cameras-on.bat", "server": "track1.cave.monash.edu:9000" },
+        "cameras-off":  {  "script": "scripts\\cameras-off.bat", "server": "track1.cave.monash.edu:9000" },
+	
+	"unity-manager":	{  "script": "scripts/UnityManager" },
+        "reboot-to-windows":   	{  "script": "scripts/UnityRebootToWindows" },
+        "reboot-to-linux":  	{  "script": "scripts/UnityRebootToLinux" },
+        "vnc-tracker":  	{  "command": "/usr/bin/vncviewer 130.194.253.155" },
+        "vnc-head2":  	{  "script": "scripts/vnc-head2" },
+
+        "sage-on":      {  "command": "xterm -e ssh head1 /cave/sabi.js/scripts/SAGEOn &" },
+        "sage-off":     {  "script": "scripts/SAGEOff" },
+        "tracker-on":   {  "script": "scripts/TrackerOn" },
+        "tracker-off":  {  "script": "scripts/TrackerOff" },
+        "mars-on":      {  "script": "scripts/MarsOn" },
+        "mars-on-withtrack":      {  "script": "scripts/MarsOnWithTrack" },
+        "mars-on-mono": {  "script": "scripts/MarsOnMono" },
+        "mars-off":     {  "script": "scripts/MarsOff" },
+        "vortex-on":    {  "script": "scripts/VortexOn" },
+        "vortex-off":   {  "script": "scripts/VortexOff" },
+        "calvr-on":     {  "script": "scripts/CalVROn" },
+        "calvr-off":    {  "script": "scripts/CalVROff" },
+        "calvrjsch-on":     {  "script": "scripts/CalVROnJSchulze" },
+        "calvr-points":     {  "script": "scripts/CalVROnJSchulzePoints" },
+        "calvr-sebuilding":     {  "script": "scripts/OmegalibSebuilding" },
+        "calvrjsch-off":    {  "script": "scripts/CalVROffJSchulze" },
+
+        "google-start":      {  "script": "scripts/Earth-start" },
+        "google-stop":       {  "script": "scripts/Earth-stop" },
+        "google-clean":      {  "script": "scripts/Earth-clean" },
+        "google-sync":       {  "script": "scripts/Earth-sync" },
+	"google-cavemode":   {  "command": "xterm -e ./scripts/Earth-batcave" },
+	"google-mirrormode": {  "command": "xterm -e ./scripts/Earth-batcave-hourly" },
+	"google-mixedmode":  {  "command": "xterm -e ./scripts/Earth-batcave-monthly" },
+
+        "sage-google-start":   {  "script": "scripts/Earth-sage-start" },
+        "sage-google-stop":    {  "script": "scripts/Earth-sage-stop" },
+	"sage-google-nohead-start":    {  "script": "scripts/Earth-sage-nohead-start" },
+	"sage-google-batcave-start":   {  "script": "scripts/Earth-sage-batcave-start" },
+
+        "omegalib_molecule-on":   {  "script": "scripts/OmegalibMolecule" },
+        "omegalib_nanotube-on":   {  "script": "scripts/OmegalibNanotube" },
+        "omegalib_kookaburra-on":   {  "script": "scripts/OmegalibKookaburra" },
+        "omegalib_tracks-on":   {  "script": "scripts/OmegalibTracks" },
+        "omegalib_enterprise-on": {  "script": "scripts/OmegalibEnterprise" },
+        "omegalib_calit2-on":     {  "script": "scripts/OmegalibCalit2" },
+        "omegalib_baybridge-on":  {  "script": "scripts/OmegalibBaybridge" },
+        "omegalib_connectome-on":     {  "script": "scripts/OmegalibConnectome" },
+        "omegalib_surganim-on":   {  "script": "scripts/OmegalibSurganim" },
+        "omegalib_meshviewer-on": {  "script": "scripts/OmegalibMeshViewer" },
+        "omegalib_iss-on": 	  {  "script": "scripts/OmegalibISS" },
+        "omegalib_vomit-on": 	  {  "script": "scripts/OmegalibVomitMountain" },
+        "omegalib-off":           {  "script": "scripts/OmegalibOff" },
+        "omegalib_usb_meshviewer":  {  "command": "xterm -e scripts/OmegalibUsbModelViewer" },
+        "omegalib_usb_applauncher": {  "command": "xterm -e scripts/OmegalibUsbAppLauncher" },
+	"omegalib_chandler-on":     {  "script": "scripts/OmegalibChandler" },
+	"omegalib_jon-on":     {  "script": "scripts/OmegalibJon" },
+	"omegalib_starform-on":     {  "script": "scripts/FlipbookStarFormation" },
+	"omegalib_histology-on":     {  "script": "scripts/OmegalibHistology" },
+	"omegalib_points-on":     {  "script": "scripts/OmegalibPointCloud" },
+	"omegalib_nh-on":     {  "script": "scripts/Omegalib6NewHorizons" },
+	"omegalib_andromeda-on":     {  "script": "scripts/OmegalibAndromeda" },
+	"omegalib_sebuilding":     {  "script": "scripts/OmegalibSebuilding" },
+	"omegalib_centuryhres":     {  "script": "scripts/OmegalibCenturyHres" },
+	"omegalib_coral-on":     {  "script": "scripts/OmegalibCoral" },
+	"omegalib_frigate-on":     {  "script": "scripts/OmegalibFrigate" },
+	"omegalib_summit-on":     {  "script": "scripts/OmegalibMKsummit" },
+
+        "processors": {  "script": "scripts/cluster-processors", "return": "process" },
+        "gpus":       {  "script": "scripts/cluster-gpus",       "return": "process"  },
+        "disks":      {  "script": "scripts/cluster-disks",      "return": "process"  },
+        "memory":     {  "script": "scripts/cluster-memory",     "return": "process"  },
+        "netcards":   {  "script": "scripts/cluster-netcards",   "return": "process"  },
+        "ips":        {  "script": "scripts/cluster-ips",        "return": "process"  },
+        "pci":        {  "script": "scripts/cluster-pci",        "return": "process"  },
+        "uptime":     {  "script": "scripts/cluster-uptime",     "return": "process"  },
+
+        "audio-reboot-on":      { "script": "scripts/Reboot",   "server": "audio1.cave.monash.edu:19999" },
+        "audio-shutdown-on":    { "script": "scripts/Shutdown", "server": "audio1.cave.monash.edu:19999" },
+        "audio-sc-on":          { "script": "scripts/ScOn",     "server": "audio1.cave.monash.edu:19999" },
+        "audio-sc-off":         { "script": "scripts/ScOff",    "server": "audio1.cave.monash.edu:19999" },
+        "audio-sc-reset":	{ "script": "scripts/ScRestart.sh" },
+        "sc-playback-stereo":   { "oscmessage" : "/playLyraStereoLocal", "server": "audio1.cave.monash.edu:3131" },
+        "sc-playback-surround": { "oscmessage" : "/sevenOne", "server": "audio1.cave.monash.edu:3131" },
+        "sc-playback-mute-on":  { "oscmessage" : "/mute",       "server": "audio1.cave.monash.edu:3131" },
+        "sc-playback-mute-off": { "oscmessage" : "/unMute",     "server": "audio1.cave.monash.edu:3131" },
+
+        "sc-mic-mute-on":  { "oscmessage" : "/routeLocalMics", "server": "audio1.cave.monash.edu:3131" },
+        "sc-mic-mute-off": { "oscmessage" : "/killLocalMics",  "server": "audio1.cave.monash.edu:3131" },
+        "sc-start-vtc":    { "oscmessage" : "/startVTC",       "server": "audio1.cave.monash.edu:3131" },
+        "sc-stop-vtc":     { "oscmessage" : "/stopVTC",        "server": "audio1.cave.monash.edu:3131" },
+
+        "sc-playback-volume":   { "oscmessage" : "/serverVol",  "server": "audio1.cave.monash.edu:3131" },
+        
+        "capture-laptop1080p":  {  "script": "scripts/HD-1080p-HDMI"},
+        "capture-laptop720p":   {  "script": "scripts/HD-720p-HDMI"},
+        "capture-j2k":          {  "script": "scripts/HD-1080p-SDI"},
+        "capture-stop":    	{  "script": "scripts/HD-STOP"},
+        "capture-codec1":	{ "script": "scripts/HD-720p-CODEC1"},
+	"capture-codec2":       { "script": "scripts/HD-720p-CODEC2"},
+	"capture-scaler1":          { "script": "scripts/HD-720p-SCALER1"},
+	"capture-scaler1-stereo":          { "script": "scripts/HD-720p-SCALER1-Stereo"},
+	"capture-stop-scaler1-stereo":          { "script": "scripts/HD-STOP-SCALER1-Stereo"},
+	"capture-john-start-capture":  {  "script": "scripts/HD-John-Start-Capture"},
+	"capture-john-rearrange-windows":  {  "script": "scripts/HD-John-Rearrange-Windows"},
+
+        "sage-usb":    	{  "script": "scripts/SAGEusb"},
+        "sage-sage2startdev":    	{  "script": "scripts/SAGEsage2startdev"},
+        "sage-contextuwall":    	{  "script": "scripts/SAGE2contextuwalldev"},
+        "sage-sage2stop":    	{  "script": "scripts/SAGE2Off"},
+        "sage-script":    	{  "script": "scripts/SAGEscript"},
+
+        "omegalib-quit":  { "command" : "/cave/omegalib/install/omegalib/bin/mcsend 'oexit()'" },
+        "panoptic-on":    { "command" : "/cave/omegalib/install/omegalib/bin/mcsend 'overridePanopticStereo(False)'" },
+        "panoptic-off":   { "command" : "/cave/omegalib/install/omegalib/bin/mcsend 'overridePanopticStereo(True)'" },
+        "omegalib_stereo-toggle":   { "command" : "/cave/omegalib/install/omegalib/bin/mcsend 'toggleStereo()'" },
+        "omegalib-wand-on":   { "command" : "/cave/omegalib/install/omegalib/bin/mcsend 'getSceneManager().displayWand(0, 1)'" },
+        "omegalib-wand-off":   { "command" : "/cave/omegalib/install/omegalib/bin/mcsend 'getSceneManager().hideWand(0)'" },
+
+	"netlogo-on": { "script": "scripts/NetlogoOn"},
+	"netlogo-go": { "script": "scripts/NetlogoGo"},
+	"netlogo-off": { "script": "scripts/NetlogoOff"},
+	"execoncarbon": { "script": "scripts/execOnCarbon"},
+
+	"mplayer_jon-on": { "script": "scripts/mplayerJon"},
+	"mplayer_angkor-on": { "script": "scripts/mplayerAngkor"},
+	"mplayer-stop": { "script": "scripts/mplayerStop"},
+
+	"vsviewer_demo-on": { "script": "scripts/vsviewerDemo"},
+	"vsviewer_slide-on": { "script": "scripts/vsviewerSlide"},
+	"vsviewer_miti-on": { "script": "scripts/vsviewerMITI2018"},
+	"vsviewer_doi-on": { "script": "scripts/vsviewerDoI"},
+	"vsviewer_wide-on": {"script": "scripts/vsviewerWideNZVisitor"},
+	"vsviewer_mml-on": {"script": "scripts/vsviewerMML"},
+	"mml3d-on": {"script": "scripts/LavaVu-MML"},
+        "vsviewer-stop": { "script": "scripts/vsviewerStop"},
+
+        "encube_imagehd-on": { "script": "scripts/encubeImagehdStart"},
+        "encube_imagehd_web-on": { "script": "scripts/encubeImagehdStartWeb"},
+	"encube_hcp-on": { "script": "scripts/encubeHCPStart"},
+        "encube_hcp_web-on": { "script": "scripts/encubeHCPStartWeb"},
+        "encube-stop": { "script": "scripts/encubeStop"},
+
+	"gigapoint_century-on": { "script": "scripts/gigapointCentury"},
+	"gigapoint_mtjen-on": { "script": "scripts/gigapointMtJen"},
+	"gigapoint-stop": { "script": "scripts/gigapointStop"},
+
+	"terrain_vic_weather-on": { "script": "scripts/terrainVicWeather"},
+        "terrain_vic_sa4-on": { "script": "scripts/terrainVicSA4"},
+	"terrain_aus-on": { "script": "scripts/terrainAus"},
+	"terrain_cyprus-on": { "script": "scripts/terrainCyprus"},
+	"terrain_windmap-on": { "script": "scripts/terrainWindmap"},
+        "terrain-stop": { "script": "scripts/OmegalibOff"},
+	
+	"lavavu-360video":    { "script": "scripts/LavaVu-360video"},
+	"lavavu-eastcoast":    { "script": "scripts/LavaVu-eastcoast"},
+	"lavavu-kookaburra":   { "script": "scripts/LavaVu-kookaburra"},
+	"lavavu-laos":   { "script": "scripts/LavaVu-Laos"},
+	"lavavu-rabbit-lungs": { "script": "scripts/LavaVu-rabbit-lungs"},
+	"lavavu-rabbit-lungs-static": { "script": "scripts/LavaVu-rabbit-lungs-static"},
+	"lavavu-subduction":   { "script": "scripts/LavaVu-subduction"},
+	"lavavu-imbl_from_anton":   { "script": "scripts/LavaVu-imbl_from_anton"},
+	"lavavu-pdbvis":   { "script": "scripts/pdbvis"},
+	"lavavu-vortex":   { "script": "scripts/LavaVu-vortex"},
+	"lavavu-centurymine": { "script": "scripts/LavaVu-centurymine"},
+	"lavavu-stop":         { "script": "scripts/LavaVu-stop"},
+
+	"vista-restart-vt8":   {"command": "sudo /usr/local/bin/XServer1 restart"},
+	"vista-stop-vt8":   { "command": "sudo /usr/local/bin/XServer1 stop"},
+	"vista-vt7":   { "command": "sudo /usr/local/bin/XServer1 vt7"},
+	"vista-vt8":   { "command": "sudo /usr/local/bin/XServer1 vt8"},
+
+	"vista-NewOrleans":   { "script": "scripts/vista-NewOrleans"},
+	"vista-stop":         { "script": "scripts/vista-stop"},
+	"FIC-coles-radio":    { "script": "scripts/FIC-coles-radio"},
+	"fic-stop":         { "script": "scripts/FIC-stop"},
+	"s2globe":         { "script": "scripts/s2globe"},
+	"s2globe-stop":   {  "script": "scripts/s2globe-stop" }
+    },
+
+    "macros": {
+        "macro-displays-on"  : [ "displays-on", "cameras-on" ],
+        "macro-displays-off" : [ "displays-off", "cameras-off" ]
+    },
+
+
+    "Admin" : {
+        "title" : "Administration",
+        "groups" : [ "displays", "x11server", "cameras", "unity"],
+        "displays" : { 
+            "title": "Displays",
+            "image": "images/planar_small.jpg",
+            "actions": [
+                {"title": "Displays ON", "macro": "macro-displays-on"},
+                {"title": "Displays OFF", "macro": "macro-displays-off"},
+                {"title": "Take Screenshot", "action": "screenshot"},
+                {"title": "CAVE mode", "action": "displays-cave"},
+                {"title": "Head3 mode", "action": "displays-head3"},
+                {"title": "SimpleWindows", "action": "displays-simpleWindows"},
+                {"title": "Stop SimpleWindows mode", "action": "displays-simpleWindows-stop"}
+            ]
+        },
+        "x11server" : {
+            "title": "Admin commands",
+            "image": "images/x11_small.png",
+            "actions": [
+                {"title": "With Xinerama mode (one server)", "action": "xinerama-on"},
+                {"title": "No Xinerama mode (four servers)", "action": "xinerama-off"},
+                {"title": "Hard reset (omega-13)", "action": "reset-x", "theme":"e"}
+            ]
+        },
+        "cameras" : {
+            "title": "Tracking cameras",
+            "image": "images/vicon_small.png",
+            "actions": [
+                {"title": "Cameras On", "action": "cameras-on", "theme":"a"},
+                {"title": "Cameras Off", "action": "cameras-off", "theme":"b"}
+            ]
+        },
+        "unity" : {
+            "title": "UNITY",
+            "image": "images/unity_small.png",
+            "actions": [
+                {"title": "Reboot to Windows", "action": "reboot-to-windows", "theme":"e"},
+                {"title": "Reboot to Linux", "action": "reboot-to-linux", "theme":"e"},
+                {"title": "VNC Tracker", "action": "vnc-tracker"},
+                {"title": "VNC Head2", "action": "vnc-head2"}
+            ]
+        }
+    },
+    "SAGE" : {
+        "title" : "SAGE",
+        "groups" : [ "usesage", "capture", "usb", "script","sage2" ],
+        "usesage" : { 
+            "title": "Use SAGE",
+            "image": "images/sage_small.jpg",
+            "description": "Starts and stops SAGE.",
+            "actions": [
+                {"title": "Start SAGE", "action": "sage-on"},
+                {"title": "Stop SAGE", "action": "sage-off", "theme": "a"}
+            ]
+        },
+        "capture" : {
+            "title": "Use the capture card",
+            "image": "images/capture_small.png",
+            "description": "Allows to use capture cards for video conferencing and to push a laptop or desktop computer onto SAGE via PC1 ports in center box. For video conferencing, using remote to wake the camera up first!",
+            "actions": [
+                {"title": "Codec 1 - 1st video conferencing screen", "action": "capture-codec1"},
+                {"title": "Codec 2 - 2nd video conferencing screen", "action": "capture-codec2"},
+                {"title": "Scaler 1 - Direct stream onto SAGE via PC1", "action": "capture-scaler1"},
+		{"title": "Scaler 1 - 3D Direct stream onto SAGE via PC1", "action": "capture-scaler1-stereo"},
+		{"title": "John - Start capture windows", "action": "capture-john-start-capture"},
+		{"title": "John - Rearrange windows (start from ID=0)", "action": "capture-john-rearrange-windows"},
+                {"title": "Capture Stop", "action": "capture-stop", "theme":"e"},
+		{"title": "Capture Stop Scaler1 3D", "action": "capture-stop-scaler1-stereo", "theme":"e"}
+            ]
+        },
+        "usb" : {
+            "title": "Upload content from the USB stick",
+            "image": "images/usb_small.png",
+            "description": "Copies the files in the folder called 'sage' into the SAGE library and opens them onto the display wall",
+            "actions": [
+                {"title": "Upload content", "action": "sage-usb"}
+            ]
+        },
+        "sage2" : {
+            "title": "Sage2",
+            "image": "images/usb_small.png",
+            "description": "Sage2",
+            "actions": [
+                {"title": "Start Sage2 (dev User)", "action": "sage-sage2startdev"},
+                {"title": "Start Contextuwall ( after Sage2 ) ", "action": "sage-contextuwall"},
+                {"title": "Stop Sage2 ", "action": "sage-sage2stop"}
+            ]
+        },
+        "script" : {
+            "title": "SAGE scripted content (test)",
+            "image": "images/vtc_small.png",
+            "description": "Runs a script to load custom content to display wall while sage is running",
+            "actions": [
+                {"title": "SAGE script", "action": "sage-script"}
+            ]
+        }
+    },
+   "Electro" : {
+        "title" : "Electro applications",
+	"navbar" : "true",
+        "groups" : [ "setup", "mars", "vortex" ],
+        "setup" : { 
+            "title": "Setup",
+            "image": "images/tracker_small.jpg",
+            "description": "Before starting Electro applications, make sure to start the tracker (click 'Start tracker').",
+            "actions": [
+                {"title": "Start tracker", "action": "tracker-on"},
+                {"title": "Stop tracker", "action": "tracker-off"},
+                {"title": "Enable audio",    "action": "sc-playback-stereo"}
+            ]
+        },
+        "mars" : { 
+            "title": "Mars",
+            "image": "images/mars_small.jpg",
+            "description": "Explore mars from space",
+            "actions": [
+                {"title": "Start", "action": "mars-on"},
+                {"title": "Start (Mono)", "action": "mars-on-mono"},
+                {"title": "Stop",  "action": "mars-off"}
+            ]
+        },
+        "vortex" : { 
+            "title": "Vortex",
+            "image": "images/vortex_small.jpg",
+            "description": "Explore stars and constellations",
+            "actions": [
+                {"title": "Start", "action": "vortex-on"},
+                {"title": "Stop",  "action": "vortex-off"}
+            ]
+        }
+    },
+   "ViSTA" : {
+        "title" : "ViSTA",
+	"navbar" : "false",
+        "groups" : [ "apps","setup" ],
+        "apps" : { 
+            "title": "ViSTA applications",
+            "image": "images/lavalogo.jpg",
+            "description": "Launch ViSTA applications",
+            "actions": [
+                {"title": "NewOrleans",  "action": "vista-NewOrleans"},
+                {"title": "STOP",         "action": "vista-stop", "theme": "c"}
+            ]
+        },
+        "setup" : { 
+            "title": "ViSTA Setup",
+            "image": "images/x11_small.png",
+            "description": "ViSTA X-Server :1 on VT8 setup",
+            "actions": [
+                {"title": "(Re-)Start XServer :1",  "action": "vista-restart-vt8"},
+                {"title": "Kill X-Server :1",  "action": "vista-stop-vt8"},
+                {"title": "Display XServer :0 VT7",  "action": "vista-vt7"},
+                {"title": "Display XServer :1 VT8",  "action": "vista-vt8"}
+            ]
+        }
+
+    },
+   "MIVP" : {
+        "title" : "MIVP applications",
+	"navbar" : "true",
+        "groups" : [ "lavavu", "tileddisplay", "gigapoint", "vsviewer", "imagehd", "terrain", "netlogo","misc" ],
+        "lavavu" : { 
+            "title": "LavaVu applications",
+            "image": "images/lavalogo.jpg",
+            "description": "Launch LavaVu applications",
+            "actions": [
+		{"title": "Elwood (hit deploy in head1-browser)",    "action": "unity-manager"},
+                {"title": "Ayutthaya 360 video",    "action": "lavavu-360video"},
+                {"title": "Eastcoast",    "action": "lavavu-eastcoast"},
+                {"title": "Rabbit Lungs", "action": "lavavu-rabbit-lungs"},
+                {"title": "Rabbit Lungs Static", "action": "lavavu-rabbit-lungs-static"},
+                {"title": "Subduction",   "action": "lavavu-subduction"},
+                {"title": "Kookaburra",   "action": "lavavu-kookaburra"},
+                {"title": "Plain of Jars",   "action": "lavavu-laos"},
+                {"title": "Mouse",   "action": "lavavu-imbl_from_anton"},
+		{"title": "Fluid Vortex",   "action": "lavavu-vortex"},
+		{"title": "Protein Database",   "action": "lavavu-pdbvis"},
+		{"title": "Run Previs", "previs" : "run-previs"},
+                {"title": "STOP LavaVu",         "action": "lavavu-stop", "theme": "e"}
+            ]
+        },
+	"tileddisplay" : {
+            "title": "Tiled display",
+            "image": "images/mivp_jon.jpg",
+            "description": "Tiled display applications",
+            "actions": [
+                {"title": "Fifty Sisters (Jon McCormack)",    "action": "mplayer_jon-on"},
+		{"title": "Angkor (Tom Chandler)",    "action": "mplayer_angkor-on"},
+                {"title": "STOP",         "action": "mplayer-stop", "theme": "e"},
+                {"title": "s2globe",         "action": "s2globe"},
+                {"title": "s2globe stop",    "action": "s2globe-stop", "theme": "e"}
+            ]
+        },
+	"gigapoint": {
+           "title": "Gigapoint",
+           "image": "images/omegalib_small.png",
+           "description": "Gigapoint apps",
+           "actions": [
+                {"title": "Century Mine", "action": "gigapoint_century-on"},
+		{"title": "Century Mine Surrounds", "action": "gigapoint_mtjen-on"},
+                {"title": "Stop", "action": "gigapoint-stop", "theme":"e"}
+           ]    
+        },
+	"vsviewer" : {
+            "title": "Virtual Slide Viewer",
+            "image": "images/mivp_jon.jpg",
+            "description": "Virtual slide applications",
+            "actions": [
+                {"title": "DeepZoom demo",    "action": "vsviewer_demo-on"},
+		{"title": "DeepZoom Wide NZ Visitor",    "action": "vsviewer_wide-on"},
+		{"title": "DeepZoom MML",    "action": "vsviewer_mml-on"},
+		{"title": "3D Vis MML",    "action": "mml3d-on"},
+		{"title": "MITI 2018 IRT",    "action": "vsviewer_miti-on"},
+                {"title": "STOP",         "action": "vsviewer-stop", "theme": "e"}
+            ]
+        },
+        "imagehd" : {
+            "title": "Encube",
+            "image": "images/mivp_jon.jpg",
+            "description": "Encube apps",
+            "actions": [
+                {"title": "ImageHD Start",    "action": "encube_imagehd-on"},
+                {"title": "ImageHD Start Web",    "action": "encube_imagehd_web-on"},
+		{"title": "HCP Start",    "action": "encube_hcp-on"},
+                {"title": "HCP Start Web",    "action": "encube_hcp_web-on"},
+                {"title": "STOP",    "action": "encube-stop", "theme": "e"}
+            ]
+        },
+        "terrain": {
+           "title": "Terrain",
+           "image": "images/omegalib_small.png",
+           "description": "Terrain geo apps",
+           "actions": [
+                {"title": "VIC and weather", "action": "terrain_vic_weather-on"},
+                {"title": "VIC and SA4 stats", "action": "terrain_vic_sa4-on"},
+		{"title": "AUS big terrain", "action": "terrain_aus-on"},
+		{"title": "Cyprus", "action": "terrain_cyprus-on"},
+		{"title": "Windmap (globe, alone)", "action": "terrain_windmap-on"},
+                {"title": "Stop", "action": "terrain-stop", "theme":"e"}
+           ]
+        },
+	"misc": {
+           "title": "Miscellaneous",
+           "image": "images/netlogo_small.png",
+           "description": "things and stuff",
+           "actions": [
+                {"title": "3DME", "action": "execoncarbon"}
+           ]
+        },
+	"netlogo": {
+           "title": "Netlogo TAC demo",
+           "image": "images/netlogo_small.png",
+           "description": "Run Netlogo TAC demo",
+           "actions": [
+                {"title": "Launch demo", "action": "netlogo-on"},
+                {"title": "Start demo", "action": "netlogo-go"},
+                {"title": "Stop demo", "action": "netlogo-off", "theme":"e"}
+           ]
+        }
+    },
+    "OmegaLib" : {
+        "title" : "OmegaLib applications",
+	"navbar" : "true",
+        "groups" : [ "setup" ,  "apps", "usb", "vr" ],
+        "setup" : { 
+            "title": "Setup",
+            "image": "images/x11_small.png",
+            "description": "Before starting OmegaLib applications, verify that the Omicron tracker is running on the Windows PC.",
+            "actions": [
+                {"title": "Enable audio",    "action": "sc-playback-stereo"},
+                {"title": "Clean up OmegaLib", "action": "omegalib-off"}
+            ]
+        },
+        "vr" : { 
+            "title": "VR modes",
+            "image": "images/panopticon_small.png",
+            "description": "Enable panoptic stereo (stereo will be 'correct' for all users, the default) or disable it (stereo will be correct for a single user).",
+            "actions": [
+                {"title": "Single-user VR", "action": "panoptic-off"},
+                {"title": "Multi-user VR", "action": "panoptic-on"},
+                {"title": "Toggle stereo/mono", "action": "omegalib_stereo-toggle"},
+                {"title": "Wand ON", "action": "omegalib-wand-on"},
+                {"title": "Wand OFF", "action": "omegalib-wand-off"}
+            ]
+        },
+        "apps" : { 
+            "title": "Standalone applications",
+            "image": "images/omegalib_small.png",
+            "description": "Launch specific OmegaLib applications",
+            "actions": [
+                {"title": "Connectome", "action": "omegalib_connectome-on"},
+                {"title": "Bay Bridge", "action": "omegalib_baybridge-on"},
+                {"title": "Mesh Viewer", "action": "omegalib_meshviewer-on"},
+                {"title": "Molecule Vis", "action": "omegalib_molecule-on"},
+                {"title": "Molecule (Nanotube)", "action": "omegalib_nanotube-on"},
+                {"title": "ISS and Earth", "action": "omegalib_iss-on"},
+                {"title": "Star Trek: Enterprise", "action": "omegalib_enterprise-on"},
+                {"title": "Kookaburra Anatomy (Quayle)", "action": "omegalib_kookaburra-on"},
+                {"title": "MBI Brain Tractography", "action": "omegalib_tracks-on"},
+                {"title": "Histology Image", "action": "omegalib_histology-on"},
+                {"title": "Star Formation Sim", "action": "omegalib_starform-on"},
+                {"title": "New Horizons", "action": "omegalib_nh-on"},
+                {"title": "Andromeda Image", "action": "omegalib_andromeda-on"},
+		{"title": "Coral", "action": "omegalib_coral-on"},
+		{"title": "Frigate", "action": "omegalib_frigate-on"},
+		{"title": "Summit", "action": "omegalib_summit-on"},
+		{"title": "Stop", "action": "omegalib-quit", "theme": "c"}
+            ]
+        },
+        "usb" : { 
+            "title": "USB Launchers",
+            "image": "images/usb_small.png",
+            "description": "USB Launchers",
+            "actions": [
+                {"title": "Model Viewer", "action": "omegalib_usb_meshviewer"},
+                {"title": "Application Launcher", "action": "omegalib_usb_applauncher"}
+            ]
+        }
+    },
+
+    "CalVR" : {
+        "title" : "CalVR",
+	"navbar" : "true",
+        "groups" : [ "calvr","calvr2014" ],
+        "calvr" : { 
+            "title": "CalVR",
+            "image": "images/calvr_small.jpg",
+            "description": "Starting CalVR(Panoramas)",
+            "actions": [
+                {"title": "Enable audio",    "action": "sc-playback-stereo"},
+                {"title": "Start", "action": "calvr-on"},
+                {"title": "Stop",  "action": "calvr-off"}
+            ]
+        },
+	"calvr2014" : { 
+            "title": "CalVR (2014)",
+            "image": "images/calvr_small.jpg",
+            "description": "Starting CalVR2014(PointClouds)",
+            "actions": [
+                {"title": "Enable audio",    "action": "sc-playback-stereo"},
+                {"title": "Start", "action": "calvrjsch-on"},
+                {"title": "Stop",  "action": "calvrjsch-off"}
+            ]
+        }
+
+    },
+
+    "FIC" : {
+        "title" : "FIC",
+	"navbar" : "true",
+        "groups" : [ "Demos", "Display","volume" ],
+        "Demos" : {
+	"title": "CAVE mode Demos",
+            "actions": [
+                {"title": "Mars", "action": "mars-on-withtrack"},
+                {"title": "Pointcloud", "action": "calvr-points"},
+                {"title": "Building", "action": "omegalib_sebuilding"},
+                {"title": "Toggle Radio on/off", "action": "FIC-coles-radio"},
+            	{"title": "Stop ( use after each Demo )",  "action": "fic-stop"}
+            ]
+          },
+	        "Display" : {
+        "title": "Display settings",
+            "actions": [
+                {"title": "Displays ON", "macro": "macro-displays-on"},
+                {"title": "Displays OFF", "macro": "macro-displays-off"},
+                {"title": "CAVE mode for Demos ( 3D-Stereo Wand Glasses )", "action": "displays-cave"},
+                {"title": "Big Windows RDS/RVS ( Mouse Keyboard ) ", "action": "displays-head3"},
+	        {"title": "Bright CAVE Background ", "action": "displays-bright-background"},
+                {"title": "Dark CAVE Background ", "action": "displays-dark-background"},
+		{"title": "Dark CAVE Background - Jan 2018", "action": "displays-dark-background-201801"},
+                {"title": "Default CAVE Background", "action": "displays-default-background"},
+                {"title": "Dark Background MIVP/CAVE2/FIC", "action": "displays-dark-mivp-background"},
+                {"title": "Bright Background MIVP/CAVE2/FIC", "action": "displays-bright-mivp-background"},
+                {"title": "Dark Background 3D MIVP/IRT", "action": "displays-dark-irt-background"},
+                {"title": "Dark Background 3D MIVP/IRT Scaled", "action": "displays-dark-irt-scaled-background"}
+	    ]
+          },
+        "volume" : {
+            "title": "Volume settings",
+            "image": "images/volume_small.png",
+            "description": "Basic playback volume control",
+            "actions": [
+                {"title": "Volume",  "action": "sc-playback-volume",  "role": "range", "minvalue": "-40", "maxvalue": "8" , "theme": "a"},
+                {"title": "Enable stereo",    "action": "sc-playback-stereo"},
+                {"title": "Enable surround",  "action": "sc-playback-surround"},
+                {"title": "Mute",    "action": "sc-playback-mute-on"},
+                {"title": "unMute",  "action": "sc-playback-mute-off"}
+            ]
+        }
+    },
+
+ 
+    "Audio" : {
+        "title" : "Audio system",
+	"navbar" : "true",
+        "groups" : [ "volume", "supercollider", "microphone", "vtc", "admin" ],
+        "volume" : { 
+            "title": "Volume",
+            "image": "images/volume_small.png",
+            "description": "Basic playback volume control",
+            "actions": [
+                {"title": "Volume",  "action": "sc-playback-volume",  "role": "range", "minvalue": "-40", "maxvalue": "8" , "theme": "a"},
+                {"title": "Enable stereo",    "action": "sc-playback-stereo"},
+                {"title": "Enable surround",  "action": "sc-playback-surround"},
+                {"title": "Mute",    "action": "sc-playback-mute-on"},
+                {"title": "unMute",  "action": "sc-playback-mute-off"}
+            ]
+        },
+        "microphone" : { 
+            "title": "Volume",
+            "image": "images/microphone_small.png",
+            "description": "Enable PA system",
+            "actions": [
+                {"title": "Mics On",    "action": "sc-mic-mute-on"},
+                {"title": "Mics Off",   "action": "sc-mic-mute-off"}
+           ]
+        },
+        "vtc" : { 
+            "title": "Videoconference",
+            "image": "images/vtc_small.png",
+            "description": "Enable and disable videoconference audio",
+            "actions": [
+                {"title": "Videoconference On",    "action": "sc-start-vtc"},
+                {"title": "Videoconference Off",   "action": "sc-stop-vtc"}
+           ]
+        },
+        "admin" : { 
+            "title": "Administration",
+            "image": "images/shutdown2.png",
+            "description": "Sound server management (MacPro)",
+            "actions": [
+                {"title": "Reboot the machine", "action": "audio-reboot-on"},
+                {"title": "Shutdown the machine",  "action": "audio-shutdown-on"}
+            ]
+        },
+        "supercollider" : { 
+            "title": "SuperCollider",
+            "image": "images/supercollider.png",
+            "description": "Manage SuperCollider",
+            "actions": [
+                {"title": "Start SuperCollider", "action": "audio-sc-on"},
+                {"title": "Stop SuperCollider",  "action": "audio-sc-off"},
+                {"title": "Reset SuperCollider",  "action": "audio-sc-reset"}
+            ]
+        }
+    }
+
+
+}

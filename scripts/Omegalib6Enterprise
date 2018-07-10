@@ -1,0 +1,16 @@
+#!/bin/bash
+. /usr/share/Modules/3.2.10/init/bash
+module load omegalib/6.3
+cd /cave/omegalib/install/omegalib6.3/bin
+
+./orun -K
+
+/cave/sabi.js/scripts/GL-highperformance
+
+
+cd /cave/omegalib/apps/enterprise
+#xterm -geometry -0-0 -e /cave/omegalib/install/omegalib6.3/bin/orun -s /cave/omegalib/apps/enterprise/enterprise-omegalib6.py
+xterm -geometry -0-0 -e /cave/omegalib/install/omegalib6.3/bin/orun -s enterprise-omegalib6.py
+
+
+

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd /cave/sage2
+/cave/sage2/STOP-cluster
+pkill -f ContextuWallServer.js

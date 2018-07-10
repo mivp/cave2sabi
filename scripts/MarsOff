@@ -1,0 +1,4 @@
+#!/bin/sh
+
+tentakel killall -9 electro-mpi
+killall -9 electro-mpi

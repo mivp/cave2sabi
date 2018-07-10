@@ -1,0 +1,5 @@
+#!/bin/sh
+
+
+hwinfo --disk | grep -e Size -e Model | awk '/Size/ {if (($4*512)>=1000000000000) printf("\t Size %.2f TB\n", $4*512/1000000000000.0);else printf("\t Size %d GB\n", $4*512/1000000000.0);} /Model/{print $0}'
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+. /usr/share/Modules/3.2.10/init/bash
+module load omegalib/13-toand
+/cave/sabi.js/scripts/GL-highperformance
+
+cd /cave/omegalib/apps/pointcloud/summit
+xterm -e orun -s MKtelescopes.py

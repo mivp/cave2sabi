@@ -1,0 +1,8 @@
+#!/bin/tcsh
+
+/cave/sabi.js/scripts/GL-highperformance
+
+#cd /data/big/dbarnes/dvohl/s2cave/encube
+#python ./encube_m.py config/dany-cave-imagehd.json 0
+cd /home/toand/git/s2cave/cavehd
+python ./cavehd.py config/toand-cave-cfg.json 0

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+cd /cave/omegalib/install/omegalib/bin
+
+./orun -K
+
+/cave/sabi.js/scripts/GL-highperformance
+
+
+cd /cave/omegalib/apps/connectome
+
+xterm -e /cave/omegalib/install/omegalib/bin/orun -s connectome.py

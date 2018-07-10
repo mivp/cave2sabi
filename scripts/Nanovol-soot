@@ -1,0 +1,8 @@
+#!/bin/sh
+
+$HOME/CAVE2.js/scripts/GL-highperformance
+
+cd $HOME/supernanvol
+
+xterm -e soot_mpi
+

@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ -d /media/usb ]
+then
+	#rsync --verbose -r -u --delete /media/CAVE2/omega/apps /data/evl/omegalib-user/usb/
+	# Luc edit
+	rsync --verbose -a --delete --exclude=.svn  --exclude=*~ --exclude=.DS* --exclude=._* /media/usb/omega/apps /data/evl/omegalib-user/usb/
+
+	#$HOME/CAVE2.js/scripts/GL-highperformance
+	$HOME/CAVE2.js/scripts/GL-highquality
+
+
+	# use the omega DEMO config file, since this is launched from the iPad.
+	# the demo config file enables the mission control server (to control the app
+	# from iPad menu), and disables the python console.
+	cd /data/evl/omegalib-user/build/bin
+	./orun -s /data/evl/omegalib-user/apps/appLauncher/appLauncher.py -c evl/lyra-xinerama-demo.cfg
+fi
+
+
+
+
