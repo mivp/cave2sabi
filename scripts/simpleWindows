@@ -1,20 +1,11 @@
 #!/bin/sh
 
+/cave/sabi.js/scripts/PlanarCave
 
-cd /home/cave/dev/videocave/build
-./GO_CAVE.sh & 
+cd /cave/sabi.js/scripts/
+python smarthub.py simplewindows 20x20_cave
+cd /home/toand/git/projects/videocave/build
 
-# Displays On
-#/cave/sabi.js/scripts/PlanarOn &
-
-# SAGE1 on
-#/cave/sabi.js/scripts/SAGEOnsimpleWindows &
-#sleep 23
-
-# Start Capture
-#/cave/sabi.js/scripts/HD-John-Start-Capture &
-#sleep 10
-
-#rearrange capture
-#/cave/sabi.js/scripts/HD-John-Rearrange-Windows &
-
+./STOP_CAVE.sh
+sleep 2
+./GO_CAVE2957.sh

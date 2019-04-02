@@ -1,7 +1,8 @@
 #!/bin/sh
 
-cd /home/cave/dev/videocave/build
-./STOP_CAVE.sh &
+#SUSE cd /home/cave/dev/videocave/build
+cd /home/toand/git/projects/videocave/build
+./STOP_CAVE.sh
 
 
 # Stop Capture

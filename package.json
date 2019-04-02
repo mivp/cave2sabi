@@ -23,15 +23,15 @@
 		"email": "renambot@gmail.com"
 	},
 	"dependencies": {
+		"forever": "^0.15.3",
 		"http-auth": "latest",
 		"json5": "latest",
 		"mime": "latest",
-		"socket.io": "latest",
-		"sprint": "latest",
-		"serialport": "latest",
-		"forever": "latest",
 		"optimist": "latest",
-		"socket.io-client": "latest"
+		"serialport": "latest",
+		"socket.io": "latest",
+		"socket.io-client": "latest",
+		"sprint": "latest"
 	},
 	"devDependencies": {
 		"jshint": "latest",

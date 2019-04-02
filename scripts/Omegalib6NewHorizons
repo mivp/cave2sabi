@@ -9,7 +9,7 @@
 
 
 #cd /cave/omegalib/apps/NewHorizons/
-
+module load omegalib/13-c++11
 #xterm -geometry -0-0 -e /cave/omegalib/install/omegalib/bin/orun -s /cave/omegalib/apps/NewHorizons07/modelView2.py
 xterm -geometry -0-0 -e orun -s /home/cave/work/modelView2.py
 

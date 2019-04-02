@@ -1,9 +1,11 @@
 #!/bin/bash
 
+/cave/sabi.js/scripts/PlanarCave
+
 . /usr/share/Modules/3.2.10/init/bash
 #module load omegalib/13-c++11
-module load LavaVu/new
-module load anaconda
+module load LavaVR/1.0.0
+#module load anaconda
 export PATH=/home/toand/git/projects/vsviewer/build/PREVIS:${PATH}
 /cave/sabi.js/scripts/GL-highperformance
 

@@ -1,5 +1,10 @@
 #!/bin/sh
 
-export PATH=/cave/dev/node/node-v4.2.2-linux-x64/bin:${PATH}
-cd /cave/sage2
-/cave/sage2/GO-cave2
+#export PATH=/cave/dev/node/node-v4.2.2-linux-x64/bin:${PATH}
+#cd /cave/sage2
+#/cave/sage2/GO-cave2
+
+#New SAGE2 via docker
+cd /cave/CAVE2-scripts/sage2/
+xterm -e "./sage2-run.sh"&
+

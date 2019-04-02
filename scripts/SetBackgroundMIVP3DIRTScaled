@@ -2,7 +2,7 @@
 
 # replace link to imagelist file
 origFile=`cat /cave/share/saver/bgfile.txt`
-newFile=`cat /cave/share/saver/bg_mivp3d_irt_scaled.txt`
+newFile=`cat /cave/share/saver/luxor_temple_night2.txt`
 
 if [ "$origFile" == "$newFile" ]; then
 
@@ -12,7 +12,7 @@ fi
 
 # replace link to imagelist file
 unlink /cave/share/saver/bgfile.txt
-ln -s /cave/share/saver/bg_mivp3d_irt_scaled.txt /cave/share/saver/bgfile.txt
+ln -s /cave/share/saver/luxor_temple_night2.txt /cave/share/saver/bgfile.txt
 
 # change to restart saver2 on nodes
 sudo /usr/local/bin/killsaver

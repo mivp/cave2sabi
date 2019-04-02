@@ -1,5 +1,5 @@
 #!/bin/sh
-
+module load omegalib/4.2.4 
 cd /cave/omegalib/install/omegalib/bin
 
 ./orun -K

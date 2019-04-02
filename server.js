@@ -81,6 +81,9 @@ var AppRPC = require('./src/AppRPC');
 // Command line argument processing
 var optimist = require('optimist');
 
+// Added by Toan
+var script = require('./src/script');
+
 // the HTTP server
 var hserver;
 // the HTTP port
@@ -170,7 +173,7 @@ function buildMainPage(cfg) {
 	var data = '';
 
 	// Generate the page
-	data += '<div data-role="page" id="MAIN" data-theme="a">\n';
+	data += '<div data-role="page" id="MAIN" data-theme="b">\n';
 
 	var numpages = cfg.main.pages.length;
 

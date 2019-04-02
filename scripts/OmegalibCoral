@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . /usr/share/Modules/3.2.10/init/bash
+module unload omegalib/13-c++11
 module load omegalib/13-toand
 /cave/sabi.js/scripts/GL-highperformance
 

@@ -1,19 +1,12 @@
 #!/bin/sh
 
+module load omegalib/4.2.4
 /cave/omegalib/install/omegalib/bin/mcsend 'oexit()'
+orun -K
+module unload omegalib/4.2.4
 
-cd /cave/omegalib/install/omegalib/bin
-
-./orun -K
-
-cd /cave/omegalib/install/omegalib5.3/bin
-
-./orun -K
-
-
-cd /cave/omegalib/install/omegalib6.3/bin
-
-./orun -K
+module load omegalib/13-c++11
+orun -K
 
 sleep 2
 

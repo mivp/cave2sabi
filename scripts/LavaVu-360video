@@ -1,4 +1,5 @@
 #!/bin/bash
+module load LavaVR/1.0.0
 cd /cave/LavaVR/apps/360
 #xterm -geometry -0-0 -e lavaVR.sh
 xterm -geometry -0-0 -e play360.sh ayutthaya_4k.mp4

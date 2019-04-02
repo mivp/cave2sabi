@@ -1,3 +1,0 @@
-#!/bin/bash
-ssh n01 'python /cave/sabi.js/scripts/planarCave'
-

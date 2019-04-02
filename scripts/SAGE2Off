@@ -1,5 +1,9 @@
 #!/bin/sh
 
-cd /cave/sage2
-/cave/sage2/STOP-cluster
-pkill -f ContextuWallServer.js
+#cd /cave/sage2
+#/cave/sage2/STOP-cluster
+#pkill -f ContextuWallServer.js
+
+#New SAGE2 via docker
+/cave/CAVE2-scripts/sage2/sage2-stop.sh
+

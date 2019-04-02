@@ -1,8 +1,8 @@
-#!/bin/tcsh
+#!/bin/sh
 
 #cd /data/big/dbarnes/dvohl/s2cave/encube
 #xterm -e python ./webserver.py config/dany-cave-imagehd.json
 
-cd /home/toand/git/s2cave/cavehd
-xterm -e python ./webserver.py config/toand-cave-cfg.json
+cd /home/toand/git/s2cave_imagehd/encube
+xterm -e python webserver.py config/toand-cave-imagehd-cfg.json
 

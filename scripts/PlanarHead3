@@ -1,29 +1,10 @@
-#!/usr/bin/env python
+#!/bin/bash
 
-import sys,serial
+[ "$(</run/user/1003/screens.lck)" = "head3" ] && exit
 
-def sendCmd(cmd):
-	cmd = str(cmd)
-	port = "/dev/ttyS0"
-	try:
-		serialPort = serial.Serial(port)
-	except serial.serialutil.SerialException:
-		print("Unable to open serial port " + port)
-		return -1
+/cave/sabi.js/scripts/PlanarOn
 
-	serialPort.baudrate = 19200
-	serialPort.timeout = 5 
-	serialPort.write(cmd.encode())
-	serialPort.flush()
 
-	response = ""
-	recvd = ""
-	while(recvd != '\r'):
-		recvd = str(serialPort.read())
-		response += recvd
-	print("planar: received " + response)
-	serialPort.close()
-	return response
+ssh n01 'python /cave/sabi.js/scripts/PlanarHead3py'
 
-sendCmd("op A1 slot.recall(2)\r")
-
+echo 'head3' > /run/user/1003/screens.lck

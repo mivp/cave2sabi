@@ -13,19 +13,20 @@
     "actions": {
         "displays-on":    {  "script": "scripts/PlanarOn" },
         "displays-off":   {  "script": "scripts/PlanarOff" },
+        "nodesX-on":   {  "command": "sudo /cave/sabi.js/scripts/XOnNodesStart" },
+        "nodesX-off":   {  "command": "sudo /cave/sabi.js/scripts/XOnNodesStop" },
         "screenshot":   {  "command" : "/cave/share/tool/take_screenshot.sh" },
         "displays-cave":   {  "script": "scripts/PlanarCave" },
         "displays-head3":   {  "script": "scripts/PlanarHead3" },
+        "displays-vr":   {  "script": "scripts/PlanarVR" },
         "displays-simpleWindows":   {  "script": "scripts/simpleWindows" },
+        "displays-vbs":   {  "script": "scripts/vbs_capture" },
         "displays-simpleWindows-stop":   {  "script": "scripts/simpleWindows-stop" },
-        "displays-default-background":   {  "script": "scripts/SetBackgroundDefault" },
-        "displays-dark-background":   {  "script": "scripts/SetBackgroundFICDark" },
-	"displays-dark-background-201801":    {   "script": "scripts/SetBackgroundFICDark201801" },
-        "displays-bright-background":   {  "script": "scripts/SetBackgroundFICLight" },
-        "displays-dark-mivp-background":   {  "script": "scripts/SetBackgroundFICMIVPDark" },
-        "displays-bright-mivp-background":   {  "script": "scripts/SetBackgroundFICMIVPLight" },
-        "displays-dark-irt-background":   {  "script": "scripts/SetBackgroundMIVP3DIRT" },
-        "displays-dark-irt-scaled-background":   {  "script": "scripts/SetBackgroundMIVP3DIRTScaled" },
+        "displays-default-background":   {  "command": "tentakel /cave/share/centos/backgroundhelper.sh /home/toand/tools/gensubimgs/10/" },
+        "displays-dark-background":   {  "command": "tentakel /cave/share/centos/backgroundhelper.sh /home/toand/tools/gensubimgs/fic_mivp_dark/" },
+	"displays-dark-background-201801":    {   "command": "tentakel /cave/share/centos/backgroundhelper.sh /home/toand/tools/gensubimgs/ficdark201801/" },
+        "displays-bright-background":   {  "command": "tentakel /cave/share/centos/backgroundhelper.sh /home/toand/tools/gensubimgs/ficlight/" },
+        "displays-dark-mivp-background":   {  "command": "tentakel /cave/share/centos/backgroundhelper.sh /home/toand/tools/gensubimgs/fic_mivp_dark/" },
         "xinerama-on":  {  "script": "scripts/XineramaOn" },
         "xinerama-off": {  "script": "scripts/XineramaOff" },
         "reset-x":      {  "command" : "xterm -e sudo /usr/local/bin/ResetX" },
@@ -33,8 +34,8 @@
 
         "cameras-on":   {  "script": "scripts\\cameras-on.bat", "server": "track1.cave.monash.edu:9000" },
         "cameras-off":  {  "script": "scripts\\cameras-off.bat", "server": "track1.cave.monash.edu:9000" },
-	
-	"unity-manager":	{  "script": "scripts/UnityManager" },
+	"unity-elwood-start":	{  "script": "scripts/UnityElwoodSTART" },
+	"unity-elwood-stop":	{  "script": "scripts/UnityElwoodSTOP" },
         "reboot-to-windows":   	{  "script": "scripts/UnityRebootToWindows" },
         "reboot-to-linux":  	{  "script": "scripts/UnityRebootToLinux" },
         "vnc-tracker":  	{  "command": "/usr/bin/vncviewer 130.194.253.155" },
@@ -97,6 +98,7 @@
 	"omegalib_coral-on":     {  "script": "scripts/OmegalibCoral" },
 	"omegalib_frigate-on":     {  "script": "scripts/OmegalibFrigate" },
 	"omegalib_summit-on":     {  "script": "scripts/OmegalibMKsummit" },
+	"omegalib-quit":     {  "script": "scripts/Omegalib-quit" },
 
         "processors": {  "script": "scripts/cluster-processors", "return": "process" },
         "gpus":       {  "script": "scripts/cluster-gpus",       "return": "process"  },
@@ -139,10 +141,10 @@
         "sage-usb":    	{  "script": "scripts/SAGEusb"},
         "sage-sage2startdev":    	{  "script": "scripts/SAGEsage2startdev"},
         "sage-contextuwall":    	{  "script": "scripts/SAGE2contextuwalldev"},
+        "sage-sage2start":    	{  "script": "scripts/SAGE2On"},
         "sage-sage2stop":    	{  "script": "scripts/SAGE2Off"},
         "sage-script":    	{  "script": "scripts/SAGEscript"},
 
-        "omegalib-quit":  { "command" : "/cave/omegalib/install/omegalib/bin/mcsend 'oexit()'" },
         "panoptic-on":    { "command" : "/cave/omegalib/install/omegalib/bin/mcsend 'overridePanopticStereo(False)'" },
         "panoptic-off":   { "command" : "/cave/omegalib/install/omegalib/bin/mcsend 'overridePanopticStereo(True)'" },
         "omegalib_stereo-toggle":   { "command" : "/cave/omegalib/install/omegalib/bin/mcsend 'toggleStereo()'" },
@@ -175,6 +177,8 @@
 
 	"gigapoint_century-on": { "script": "scripts/gigapointCentury"},
 	"gigapoint_mtjen-on": { "script": "scripts/gigapointMtJen"},
+	"gigapoint_lunarisiii-on": { "script": "scripts/gigapointLunarisIII"},
+	"previs_melbourne": { "command": "xterm -e /cave/sabi.js/scripts/previsRun 335663"},
 	"gigapoint-stop": { "script": "scripts/gigapointStop"},
 
 	"terrain_vic_weather-on": { "script": "scripts/terrainVicWeather"},
@@ -185,9 +189,11 @@
         "terrain-stop": { "script": "scripts/OmegalibOff"},
 	
 	"lavavu-360video":    { "script": "scripts/LavaVu-360video"},
+	"lavavu-videosynth":    { "script": "scripts/LavaVu-videosynth"},
 	"lavavu-eastcoast":    { "script": "scripts/LavaVu-eastcoast"},
 	"lavavu-kookaburra":   { "script": "scripts/LavaVu-kookaburra"},
 	"lavavu-laos":   { "script": "scripts/LavaVu-Laos"},
+	"lavavu-rockshelterart":   { "script": "scripts/LavaVu-RockShelterArt"},
 	"lavavu-rabbit-lungs": { "script": "scripts/LavaVu-rabbit-lungs"},
 	"lavavu-rabbit-lungs-static": { "script": "scripts/LavaVu-rabbit-lungs-static"},
 	"lavavu-subduction":   { "script": "scripts/LavaVu-subduction"},
@@ -225,11 +231,15 @@
             "actions": [
                 {"title": "Displays ON", "macro": "macro-displays-on"},
                 {"title": "Displays OFF", "macro": "macro-displays-off"},
+                {"title": "X on Nodes On", "action": "nodesX-on"},
+                {"title": "X on Nodes Off", "action": "nodesX-off"},
                 {"title": "Take Screenshot", "action": "screenshot"},
                 {"title": "CAVE mode", "action": "displays-cave"},
                 {"title": "Head3 mode", "action": "displays-head3"},
-                {"title": "SimpleWindows", "action": "displays-simpleWindows"},
-                {"title": "Stop SimpleWindows mode", "action": "displays-simpleWindows-stop"}
+                {"title": "VR on C17-20", "action": "displays-vr"},
+                {"title": "Head x5", "action": "displays-simpleWindows"},
+                {"title": "VBS Capture", "action": "displays-vbs"},
+                {"title": "Stop Capture", "action": "displays-simpleWindows-stop"}
             ]
         },
         "x11server" : {
@@ -300,6 +310,7 @@
             "image": "images/usb_small.png",
             "description": "Sage2",
             "actions": [
+                {"title": "Start Sage2 (docker)", "action": "sage-sage2start"},
                 {"title": "Start Sage2 (dev User)", "action": "sage-sage2startdev"},
                 {"title": "Start Contextuwall ( after Sage2 ) ", "action": "sage-contextuwall"},
                 {"title": "Stop Sage2 ", "action": "sage-sage2stop"}
@@ -351,7 +362,7 @@
    "ViSTA" : {
         "title" : "ViSTA",
 	"navbar" : "false",
-        "groups" : [ "apps","setup" ],
+        "groups" : [ "apps" ],
         "apps" : { 
             "title": "ViSTA applications",
             "image": "images/lavalogo.jpg",
@@ -360,19 +371,7 @@
                 {"title": "NewOrleans",  "action": "vista-NewOrleans"},
                 {"title": "STOP",         "action": "vista-stop", "theme": "c"}
             ]
-        },
-        "setup" : { 
-            "title": "ViSTA Setup",
-            "image": "images/x11_small.png",
-            "description": "ViSTA X-Server :1 on VT8 setup",
-            "actions": [
-                {"title": "(Re-)Start XServer :1",  "action": "vista-restart-vt8"},
-                {"title": "Kill X-Server :1",  "action": "vista-stop-vt8"},
-                {"title": "Display XServer :0 VT7",  "action": "vista-vt7"},
-                {"title": "Display XServer :1 VT8",  "action": "vista-vt8"}
-            ]
         }
-
     },
    "MIVP" : {
         "title" : "MIVP applications",
@@ -383,14 +382,15 @@
             "image": "images/lavalogo.jpg",
             "description": "Launch LavaVu applications",
             "actions": [
-		{"title": "Elwood (hit deploy in head1-browser)",    "action": "unity-manager"},
                 {"title": "Ayutthaya 360 video",    "action": "lavavu-360video"},
+                {"title": "VideoSynth Great Barrier Reef",    "action": "lavavu-videosynth"},
                 {"title": "Eastcoast",    "action": "lavavu-eastcoast"},
                 {"title": "Rabbit Lungs", "action": "lavavu-rabbit-lungs"},
                 {"title": "Rabbit Lungs Static", "action": "lavavu-rabbit-lungs-static"},
                 {"title": "Subduction",   "action": "lavavu-subduction"},
                 {"title": "Kookaburra",   "action": "lavavu-kookaburra"},
                 {"title": "Plain of Jars",   "action": "lavavu-laos"},
+                {"title": "RockShelterArt(do not take pictures)",   "action": "lavavu-rockshelterart"},
                 {"title": "Mouse",   "action": "lavavu-imbl_from_anton"},
 		{"title": "Fluid Vortex",   "action": "lavavu-vortex"},
 		{"title": "Protein Database",   "action": "lavavu-pdbvis"},
@@ -417,6 +417,8 @@
            "actions": [
                 {"title": "Century Mine", "action": "gigapoint_century-on"},
 		{"title": "Century Mine Surrounds", "action": "gigapoint_mtjen-on"},
+		{"title": "LunarisIII (noPhotos!)", "action": "gigapoint_lunarisiii-on"},
+		{"title": "Melbourne", "action": "previs_melbourne"},
                 {"title": "Stop", "action": "gigapoint-stop", "theme":"e"}
            ]    
         },
@@ -459,11 +461,12 @@
            ]
         },
 	"misc": {
-           "title": "Miscellaneous",
-           "image": "images/netlogo_small.png",
-           "description": "things and stuff",
+           "title": "Elwood Flooding",
+           "image": "images/unity_small.png",
+           "description": "Elwood Flooding",
            "actions": [
-                {"title": "3DME", "action": "execoncarbon"}
+		{"title": "Elwood Flooding Simulation",    "action": "unity-elwood-start"},
+		{"title": "Stop Elwood",    "action": "unity-elwood-stop"}
            ]
         },
 	"netlogo": {
@@ -516,12 +519,9 @@
                 {"title": "Star Trek: Enterprise", "action": "omegalib_enterprise-on"},
                 {"title": "Kookaburra Anatomy (Quayle)", "action": "omegalib_kookaburra-on"},
                 {"title": "MBI Brain Tractography", "action": "omegalib_tracks-on"},
-                {"title": "Histology Image", "action": "omegalib_histology-on"},
                 {"title": "Star Formation Sim", "action": "omegalib_starform-on"},
                 {"title": "New Horizons", "action": "omegalib_nh-on"},
-                {"title": "Andromeda Image", "action": "omegalib_andromeda-on"},
 		{"title": "Coral", "action": "omegalib_coral-on"},
-		{"title": "Frigate", "action": "omegalib_frigate-on"},
 		{"title": "Summit", "action": "omegalib_summit-on"},
 		{"title": "Stop", "action": "omegalib-quit", "theme": "c"}
             ]
@@ -589,10 +589,7 @@
                 {"title": "Dark CAVE Background ", "action": "displays-dark-background"},
 		{"title": "Dark CAVE Background - Jan 2018", "action": "displays-dark-background-201801"},
                 {"title": "Default CAVE Background", "action": "displays-default-background"},
-                {"title": "Dark Background MIVP/CAVE2/FIC", "action": "displays-dark-mivp-background"},
-                {"title": "Bright Background MIVP/CAVE2/FIC", "action": "displays-bright-mivp-background"},
-                {"title": "Dark Background 3D MIVP/IRT", "action": "displays-dark-irt-background"},
-                {"title": "Dark Background 3D MIVP/IRT Scaled", "action": "displays-dark-irt-scaled-background"}
+                {"title": "Dark Background MIVP/CAVE2/FIC", "action": "displays-dark-mivp-background"}
 	    ]
           },
         "volume" : {

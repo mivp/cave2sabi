@@ -1,4 +1,5 @@
 #!/bin/bash
+module load LavaVR/1.0.0
 cd /data/fast/okaluza/C3_run01reg_crop_invert
 xterm -geometry -0-0 -e LavaVR.sh
 
