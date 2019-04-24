@@ -1,0 +1,5 @@
+#!/bin/bash
+module load LavaVR/1.0.0
+cd /home/okaluza/RockShelterArt
+xterm -geometry -0-0 -e LavaVR.sh
+

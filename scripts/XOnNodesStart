@@ -1,0 +1,2 @@
+#!/bin/sh
+tentakel /cave/share/centos/ssh_runX.sh

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+module load omegalib/4.2.4
+/cave/omegalib/install/omegalib/bin/mcsend 'oexit()'
+

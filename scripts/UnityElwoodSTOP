@@ -1,0 +1,2 @@
+tentakel pkill -f Elwood
+pkill -f Elwood

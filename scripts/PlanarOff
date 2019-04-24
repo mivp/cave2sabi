@@ -1,0 +1,6 @@
+#!/bin/bash
+
+python /cave/sabi.js/scripts/planarOff
+ssh n01 'python /cave/sabi.js/scripts/planarOff'
+
+rm /run/user/1003/screens.lck

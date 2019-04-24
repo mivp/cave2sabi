@@ -10,6 +10,96 @@
 }
 
 .ui-header .ui-title {
-	margin: 0 10%;
+	margin: 0 170px;
 	text-overflow: clip;
+	text-align: left;
+}
+
+.ui-title{
+
+}
+.globalpower_on,
+.globalpower_off {
+	position: fixed;
+	top: 3px;
+	
+	width: 40px;
+	height:40px;
+	z-index:4000;
+	object-fit: contain;
+	border-radius: 5px;
+}
+
+.globalpower_on {
+	left: 50px;
+	background: green;
+}
+.globalpower_off {
+	left:110px;
+	background: red;
+}
+.smallWindows,
+.bigWindows {
+	position: fixed;
+	top: 3px;
+	width: 90px;
+	height:40px;
+	z-index:4000;
+	object-fit: contain;
+	border-radius: 5px;
+	background-color: white;
+	display: flex;
+	justify-content: space-around;
+
+}
+
+.smallWindows img{
+	width: auto;
+	height:40px;
+}
+.bigWindows {
+	right:0;
+}
+
+.bigWindows p,
+.smallWindows p{
+	line-height:40px;
+	height:40px;
+	margin: 0 0 0 0;
+}
+
+.bigWindows p{
+	margin-left:5px;
+}
+.smallWindows{
+	right:97px;
+}
+.bigWindows img{
+	width: auto;
+	height:40px;
+}
+
+.CAVE2Logo {
+	position: fixed;
+	top: 3px;
+	right:195px;
+	width: auto;
+	height:40px;
+	z-index:4000;
+	object-fit: contain;
+	border-radius: 5px;
+}
+
+.CAVE2Logo img{
+	width: auto;
+	height:40px;
+	border-radius:5px;
+}
+.globalpower_on img{
+	width: 100%;
+	height:auto;
+}
+.globalpower_off img{
+	width: 100%;
+	height:auto;
 }

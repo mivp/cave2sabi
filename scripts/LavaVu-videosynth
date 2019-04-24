@@ -1,0 +1,6 @@
+#!/bin/bash
+module load LavaVR/1.0.0
+/cave/sabi.js/scripts/GL-highquality
+cd /cave/LavaVR/apps/videosynth
+xterm -geometry -0-0 -e playsynth.sh AustraliasGreatBarrierReef-BiodiversityandMarineLifeThreatened.mp4
+

@@ -8,7 +8,7 @@
         "footer" : "<h4>CAVE2 Enhanced Experience</h4>",
         "image" : "images/cave2_logo.gif",
         "image_style" : "width=\"90%\" style=\"max-width:420px;align:center;margin: 0 auto;\"",
-        "pages" : [ "Admin", "MIVP", "Self Service", "SAGE", "Electro", "OmegaLib", "CalVR", "Audio", "ViSTA", "FIC" ]
+        "pages" : [ "Admin", "MIVP", "SAGE", "Electro", "OmegaLib", "CalVR", "Audio", "ViSTA", "FIC" ]
     },
     "actions": {
         "displays-on":    {  "script": "scripts/PlanarOn" },
@@ -222,34 +222,6 @@
     },
 
 
-
-    "Self Service" : {
-        "title" : "Self Service",
-        "groups" : [ "SELF_SERVICE"],
-        "SELF_SERVICE" : {
-            "title": "Self Service Menu",
-            "image": "images/unity_small.png",
-            "actions": [
-		{"title": "Run Previs", "previs" : "1"},
-                {"title": "See Melbourne CBD", "action": "previs_melbourne"},
-                {"title": "Mars Images TODO vsview", "action": ""},
-                {"title": "Mars Flyover", "action": "mars-on-withtrack"},
-                {"title": "Bay Bridge CAD Model", "action": "omegalib_baybridge-on"},
-                {"title": "Human Connectome", "action": "omegalib_connectome-on"},
-                {"title": "STOP ( use after each application )", "action": "fic-stop", "theme": "b"},
-                {"title": "Volume",  "action": "sc-playback-volume",  "role": "range", "minvalue": "-40", "maxvalue": "8" , "theme": "a"}
-            ]
-        },
-        "volume" : {
-            "title": "Volume settings",
-            "image": "images/volume_small.png",
-            "description": "Basic playback volume control",
-            "actions": [
-                {"title": "Volume",  "action": "sc-playback-volume",  "role": "range", "minvalue": "-40", "maxvalue": "8" , "theme": "a"}
-	    ]
-        }
-    },
-
     "Admin" : {
         "title" : "Administration",
         "groups" : [ "displays", "x11server", "cameras", "unity"],
@@ -422,7 +394,7 @@
                 {"title": "Mouse",   "action": "lavavu-imbl_from_anton"},
 		{"title": "Fluid Vortex",   "action": "lavavu-vortex"},
 		{"title": "Protein Database",   "action": "lavavu-pdbvis"},
-		{"title": "Run Previs", "previs" : "0"},
+		{"title": "Run Previs", "previs" : "run-previs"},
                 {"title": "STOP LavaVu",         "action": "lavavu-stop", "theme": "e"}
             ]
         },

@@ -6,3 +6,8 @@ orun -K
 tentakel killall -9 CalVR;killall -9 electro-mpi
 killall xterm
 pkill -f coles
+
+killall dzviewer
+tentakel 'killall dzviewer'
+
+/cave/sabi.js/scripts/LavaVu-stop

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cd /cave/sabi.js/scripts/
+python smarthub.py vbs 20x20_cave
+cd /home/toand/git/projects/videocave/build
+
+./STOP_CAVE.sh
+sleep 2
+./GO_CAVE30p.sh
+
+

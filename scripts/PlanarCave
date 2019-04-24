@@ -1,0 +1,14 @@
+#!/bin/bash
+
+/home/toand/git/projects/videocave/build/STOP_CAVE.sh
+
+[ "$(</run/user/1003/screens.lck)" = "cluster" ] && exit
+
+/cave/sabi.js/scripts/PlanarOn
+
+ssh n01 'python /cave/sabi.js/scripts/PlanarCavepy'
+python /cave/sabi.js/scripts/PlanarCavepy
+
+echo 'cluster' > /run/user/1003/screens.lck
+
+

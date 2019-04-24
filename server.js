@@ -174,7 +174,10 @@ function buildMainPage(cfg) {
 
 	// Generate the page
 	data += '<div data-role="page" id="MAIN" data-theme="b">\n';
-
+	//Nora Hamacher: Remove these 3 function calls if you don't want on/off and cave/windows mode buttons on main page.
+	data+= makeGlobalPowerButton();
+	data+= makeCAVE2Logo();
+	data+= makeWindowsLogos();
 	var numpages = cfg.main.pages.length;
 
 	// Panel
@@ -231,7 +234,32 @@ function buildMainPage(cfg) {
 // ---------------------------------------------
 //   Build any othe page from the configuration
 // ---------------------------------------------
+function makeGlobalPowerButton(){
 
+	//use id to address a script
+	var str = "";
+	str += "<div data-role='button' onClick='playSound()' role='button' id='displays-on' class='globalpower_on sabijs ui-link'><img src='images/shutdown2.png'  /> </div>";
+	str += "<div data-role='button' onClick='playSound()' role='button' id='displays-off' class='globalpower_off sabijs ui-link'><img src='images/shutdown2.png'  /> </div>";
+	return str;
+}
+
+function makeCAVE2Logo(){
+	var str = "";
+	str += "<div data-role='button' onClick='playSound()' role='button' id='displays-cave' class='CAVE2Logo sabijs ui-link'><img src='images/cave2_logo.png'  /> </div>";
+
+
+	return str;
+
+}
+
+function makeWindowsLogos(){
+	var str = "";
+	str += "<div data-role='button' onClick='playSound()' role='button' id='displays-head3' class='bigWindows sabijs ui-link'><p>BIG-</p><img src='images/windows_small.png'  /> </div>";
+	str += "<div data-role='button' onClick='playSound()' role='button' id='displays-simpleWindows' class='smallWindows sabijs ui-link'><p>Simple-</p><img src='images/windows_small.png'  /> </div>";
+
+
+	return str;
+}
 function buildaPage(cfg, name) {
 	var a, p, b, theme, role, collapsed;
 	var data = '';
@@ -243,6 +271,10 @@ function buildaPage(cfg, name) {
 		// Generate the page
 		data += '<div data-role="page" id="' + name + '" data-theme="b">\n';
 
+		//Powerbutton
+		data+= makeGlobalPowerButton();
+		data+= makeCAVE2Logo();
+		data+= makeWindowsLogos();
 		// Panel
 		data += '<div data-role="panel" id="navpanel" style="background: rgba(0,0,0,.80);" data-display="overlay" data-theme="a">';
 		data += '<h2>Menu</h2>';
@@ -298,16 +330,18 @@ function buildaPage(cfg, name) {
 					}
 					if (role=="button") {
 						if(c.actions[a].previs) {
-
-							data += '<p><a href="#popupPrevis" data-rel="popup" data-icon="gear" data-role="button" data-theme="' + theme + '" class="sabijs" >Run previs</a></p>\n';
+							console.log(c.actions[a]);
+							ID = c.actions[a].previs;
 							
-							data += '<div data-role="popup" id="popupPrevis" data-theme="a" class="ui-corner-all">\n';
+							data += '<p><a href="#popupPrevis' + ID + '" data-rel="popup" data-icon="gear" data-role="button" data-theme="' + theme + '" class="sabijs" >Run previs</a></p>\n';
+							
+							data += '<div data-role="popup" id="popupPrevis' + ID + '" data-theme="a" class="ui-corner-all">\n';
 							data += '	<form>\n';
 							data += '		<div style="padding:10px 20px;">\n';
 							data += '			<h4>Input tag:</h4>';
-							data += '			<label for="popup-input1" class="ui-hidden-accessible">Tag:</label>';
-							data += '			<input type="text" name="popup-input1" id="popup-input1" value="" placeholder="tag" data-theme="a">';
-	            			data += ' 			<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" id="popupBtnOK">OK</a>\n';
+							data += '			<label for="popup-input' + ID + '" class="ui-hidden-accessible">Tag:</label>';
+							data += '			<input type="text" name="popup-input' + ID + '" id="popup-input' + ID + '" value="" placeholder="tag" data-theme="a">';
+	            data += ' 			<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" id="popupBtnOK' + ID + '">OK</a>\n';
 							data += ' 			<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Cancel</a>\n';
 							data += '		</div>\n';
 							data += '	</form>\n';

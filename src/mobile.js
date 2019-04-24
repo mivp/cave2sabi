@@ -137,11 +137,17 @@ function playSound() {
 
 	});
 
- 	$('#popupBtnOK').click(function(e) {
-		var tag = $("#popup-input1").val()
-			console.log('popupBtnOK', tag);
+ 	$('#popupBtnOK0').click(function(e) {
+		var tag = $("#popup-input0").val()
+			console.log('popupBtnOK0', tag);
 			socket.emit('previs', {tag: tag});
-  	});
+	});
+	
+	$('#popupBtnOK1').click(function(e) {
+		var tag = $("#popup-input1").val()
+			console.log('popupBtnOK1', tag);
+			socket.emit('previs', {tag: tag});
+  });
 
 	// audio feedback for clicks
 	$('a').click(function(){

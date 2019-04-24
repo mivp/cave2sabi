@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd  /cave/sabi.js
+
+echo `node --version`
+
+./STOP
+forever cleanlogs
+forever start -l cave2-SSlog.log -o cave2-SSout.log -e cave2-SSerr.log server.js -f cave2_selfservice.json &
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+[ -f /run/user/1003/screens.lck ] && exit 
+
+echo 'on' > /run/user/1003/screens.lck
+
+python /cave/sabi.js/scripts/planarOn
+ssh n01 'python /cave/sabi.js/scripts/planarOn'
+
+sleep 20 

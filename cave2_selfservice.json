@@ -4,11 +4,11 @@
         "server_port" : "9000"
     },
     "main": {
-        "header" : "<h1>CAVE2 Enhanced Experience</h1>",
+        "header" : "<h1>CAVE2 Self Service Menu</h1>",
         "footer" : "<h4>CAVE2 Enhanced Experience</h4>",
         "image" : "images/cave2_logo.gif",
         "image_style" : "width=\"90%\" style=\"max-width:420px;align:center;margin: 0 auto;\"",
-        "pages" : [ "Admin", "MIVP", "Self Service", "SAGE", "Electro", "OmegaLib", "CalVR", "Audio", "ViSTA", "FIC" ]
+        "pages" : [ "Self Service" ]
     },
     "actions": {
         "displays-on":    {  "script": "scripts/PlanarOn" },
@@ -34,8 +34,8 @@
 
         "cameras-on":   {  "script": "scripts\\cameras-on.bat", "server": "track1.cave.monash.edu:9000" },
         "cameras-off":  {  "script": "scripts\\cameras-off.bat", "server": "track1.cave.monash.edu:9000" },
-	"unity-elwood-start":	{  "script": "scripts/UnityElwoodSTART" },
-	"unity-elwood-stop":	{  "script": "scripts/UnityElwoodSTOP" },
+	
+	"unity-manager":	{  "script": "scripts/UnityManager" },
         "reboot-to-windows":   	{  "script": "scripts/UnityRebootToWindows" },
         "reboot-to-linux":  	{  "script": "scripts/UnityRebootToLinux" },
         "vnc-tracker":  	{  "command": "/usr/bin/vncviewer 130.194.253.155" },
@@ -221,22 +221,31 @@
         "macro-displays-off" : [ "displays-off", "cameras-off" ]
     },
 
-
-
     "Self Service" : {
         "title" : "Self Service",
         "groups" : [ "SELF_SERVICE"],
+        "Services" : { 
+            "title": "Choose your CAVE MODE",
+            "image": "images/planar_small.jpg",
+            "actions": [
+                {"title": "CAVE MODE: Linux Cluster AND RESET", "macro": "macro-displays-on"},
+                {"title": "CAVE MODE: High Resolution Windows, SOE", "macro": "macro-displays-off"},
+                {"title": "CAVE MODE: Full Surround Winows, SOE", "action": "nodesX-on"},
+                {"title": "See Data via Previs Tag", "action": "nodesX-off"},
+                {"title": "Paraview", "action": "screenshot"}
+            ]
+        },
         "SELF_SERVICE" : {
             "title": "Self Service Menu",
             "image": "images/unity_small.png",
             "actions": [
-		{"title": "Run Previs", "previs" : "1"},
+                {"title": "See Data via Previs Tag", "action": "run-previs"},
                 {"title": "See Melbourne CBD", "action": "previs_melbourne"},
                 {"title": "Mars Images TODO vsview", "action": ""},
                 {"title": "Mars Flyover", "action": "mars-on-withtrack"},
                 {"title": "Bay Bridge CAD Model", "action": "omegalib_baybridge-on"},
                 {"title": "Human Connectome", "action": "omegalib_connectome-on"},
-                {"title": "STOP ( use after each application )", "action": "fic-stop", "theme": "b"},
+                {"title": "STOP TODO", "action": "fic-stop", "theme": "b"},
                 {"title": "Volume",  "action": "sc-playback-volume",  "role": "range", "minvalue": "-40", "maxvalue": "8" , "theme": "a"}
             ]
         },
@@ -410,6 +419,7 @@
             "image": "images/lavalogo.jpg",
             "description": "Launch LavaVu applications",
             "actions": [
+		{"title": "Elwood (hit deploy in head1-browser)",    "action": "unity-manager"},
                 {"title": "Ayutthaya 360 video",    "action": "lavavu-360video"},
                 {"title": "VideoSynth Great Barrier Reef",    "action": "lavavu-videosynth"},
                 {"title": "Eastcoast",    "action": "lavavu-eastcoast"},
@@ -422,7 +432,7 @@
                 {"title": "Mouse",   "action": "lavavu-imbl_from_anton"},
 		{"title": "Fluid Vortex",   "action": "lavavu-vortex"},
 		{"title": "Protein Database",   "action": "lavavu-pdbvis"},
-		{"title": "Run Previs", "previs" : "0"},
+		{"title": "Run Previs", "previs" : "run-previs"},
                 {"title": "STOP LavaVu",         "action": "lavavu-stop", "theme": "e"}
             ]
         },
@@ -489,12 +499,11 @@
            ]
         },
 	"misc": {
-           "title": "Elwood Flooding",
-           "image": "images/unity_small.png",
-           "description": "Elwood Flooding",
+           "title": "Miscellaneous",
+           "image": "images/netlogo_small.png",
+           "description": "things and stuff",
            "actions": [
-		{"title": "Elwood Flooding Simulation",    "action": "unity-elwood-start"},
-		{"title": "Stop Elwood",    "action": "unity-elwood-stop"}
+                {"title": "3DME", "action": "execoncarbon"}
            ]
         },
 	"netlogo": {
@@ -547,8 +556,10 @@
                 {"title": "Star Trek: Enterprise", "action": "omegalib_enterprise-on"},
                 {"title": "Kookaburra Anatomy (Quayle)", "action": "omegalib_kookaburra-on"},
                 {"title": "MBI Brain Tractography", "action": "omegalib_tracks-on"},
+                {"title": "Histology Image", "action": "omegalib_histology-on"},
                 {"title": "Star Formation Sim", "action": "omegalib_starform-on"},
                 {"title": "New Horizons", "action": "omegalib_nh-on"},
+                {"title": "Andromeda Image", "action": "omegalib_andromeda-on"},
 		{"title": "Coral", "action": "omegalib_coral-on"},
 		{"title": "Summit", "action": "omegalib_summit-on"},
 		{"title": "Stop", "action": "omegalib-quit", "theme": "c"}

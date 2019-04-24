@@ -8,3 +8,4 @@
 ssh n01 'python /cave/sabi.js/scripts/PlanarHead3py'
 
 echo 'head3' > /run/user/1003/screens.lck
+/home/toand/git/projects/videocave/build/STOP_CAVE.sh

@@ -1,0 +1,3 @@
+#!/bin/bash
+python /cave/sabi.js/scripts/PlanarVRpy
+
